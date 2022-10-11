@@ -1,21 +1,18 @@
 //  $(document).foundation();  // to be existed?
 $("#search").on("click", (e) => {
     e.preventDefault();
+    console.log(e);
     var searchValue = $("#searchInput").val();
-    console.log("before");
-    // document.location.replace("./index2_listing.html");
-    console.log("after");
-    //getGiphyApi(searchValue);
+    console.log(searchValue);
+    getGiphyApi(searchValue);
     getMovieApi(searchValue);
-    
     getYouTubApi(searchValue);
-    
 
 
 });
 
 function getGiphyApi(searchValue) {
-    var apiKey = config.MY_GIPHY_API;
+    var apiKey = config.MY_GIPHY_APIMY_MOVIE_API;
 
     var requestUrl = "https://api.giphy.com/v1/gifs/search?q=" + searchValue + "&limit=5&api_key=" + apiKey;
     console.log(requestUrl);
@@ -61,7 +58,6 @@ function renderGiphy(params) {
 }
 
 function getMovieApi(searchValue) {
-    console.log("here");
     var moveUrlByTitle = 'https://movie-database-alternative.p.rapidapi.com/?s=' + searchValue + '&r=json&page=1'
 
     const options = {
@@ -72,59 +68,49 @@ function getMovieApi(searchValue) {
         }
     };
 
-    // $("#movie-container").empty();//init is it right position to init?
+    $("#movie-container").empty();//init is it right position to init?
 
 
     fetch(moveUrlByTitle, options)
         .then(response => response.json())
         .then((data) => {
             console.log(data);
-            renderMovie(data);          
+            for (let i = 0; i < 2; i++) {   //set iterate twice because of limited api access use. needed to change
+                var id = data.Search[i].imdbID;
+                var type = data.Search[i].type;
+                var movieByIdUrl = 'https://movie-database-alternative.p.rapidapi.com/?r=json&i=' + id;
+                console.log(movieByIdUrl);
+
+                // if (type === "movie") {   //need some filtering
+                fetch(movieByIdUrl, options)
+                    .then(response => response.json())
+                    .then((data) => {
+                        console.log("success");
+                        console.log(data);
+                        renderMovie(data);
+
+                    })
+                    .catch(err => console.error(err));
+
+
+
+            }
+
 
         })
         .catch(err => console.error(err));
 }
-
-// Renders movie to Page 2
 function renderMovie(data) {
 
-    for (let i = 0; i < 6; i++) {   //set iterate twice because of limited api access use. needed to change
-        var id = data.Search[i].imdbID;
-        var type = data.Search[i].type;
-        var title= data.Search[i].title;
-        var imgSrc=data.Search[i].Poster;
-
-        console.log(data.Poster);
-        var div = $("<div>").addClass("cell cell small-6 large-4 auto button");
-        var img = $("<img>").attr({"src": imgSrc,"data-open":"movieModal"});
-        div.append(img);
-        $("#movie-result-container").append(div);
-        
-       
-
-        // var movieByIdUrl = 'https://movie-database-alternative.p.rapidapi.com/?r=json&i=' + id;
-        // // if (type === "movie") {   //need some filtering
-        // fetch(movieByIdUrl, options)
-        //     .then(response => response.json())
-        //     .then((data) => {
-        //         console.log("success");
-        //         console.log(data);
-        //         renderMovie(data);
-
-        //     })
-        //     .catch(err => console.error(err));
-
-        //}
-
-
-
-    }
-
- 
-    
+    var imgSrc = data.Poster;
+    console.log(data.Poster);
+    var div = $("<div>").addClass("cell auto movie-box");
+    var img = $("<img>").attr("src", imgSrc);
+    div.append(img);
+    $("#movie-container").append(div);
 
 }
-function getYouTubApi(searchValue){
+function getYouTubApi(searchValue) {
     var ApiKey = config.MY_YOUTUBE_API;
     var url = "https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=3&q=" + searchValue + "&key=" + ApiKey;
     fetch(url)
@@ -134,20 +120,26 @@ function getYouTubApi(searchValue){
             console.log(data);
             renderYouTubeModal(data);
             
+
         })
         .catch(err => console.error(err));
 
+
+    
+
+        function (data) {
+            $.each(data.items, function (i, value) {
+                console.log(value);
+                var channel = value.snippet.channelTitle;
+                var videoURL = value.id.videoId;
+                var videoTitle = value.snippet.title;
+                var videoThumbnail = value.snippet.thumbnails.medium.url;
+                $('#results').append('<li class="card"><a href="https://www.youtube.com/watch?v=' + videoURL + '" target="_blank"><div><img src="' + videoThumbnail + '"></div><article class="card-text"><small>' + channel + '</small><h1 class="video-title">' + videoTitle + '</h1></article></a></li>');
+            });
+        }
+    );
+
 }
 function renderYouTubeModal(data){
-    
-        $.each(data.items, function (i, value) {
-            console.log(value);
-            var channel = value.snippet.channelTitle;
-            var videoURL = value.id.videoId;
-            var videoTitle = value.snippet.title;
-            var videoThumbnail = value.snippet.thumbnails.medium.url;
-            $('#music-container').append('<li class="card"><a href="https://www.youtube.com/watch?v=' + videoURL + '" target="_blank"><div><img src="' + videoThumbnail + '"></div><article class="card-text"><small>' + channel + '</small><h1 class="video-title">' + videoTitle + '</h1></article></a></li>');
-        });
-    
     
 }

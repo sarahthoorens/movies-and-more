@@ -58,6 +58,10 @@ img {
 .h4-background {
   background: black;
 }
+img:hover{
+  opacity: 0.5;
+}
+
 
 
 /* Smallest screen only attempts to keep image more rectangle instead of defaulting to a square.*/
