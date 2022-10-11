@@ -5,7 +5,7 @@ $("#search").on("click", (e) => {
     
     //getGiphyApi(searchValue);
     getMovieApi(searchValue); 
-    getYouTubApi(searchValue);
+    //getYouTubApi(searchValue);
     
 
 
@@ -85,7 +85,17 @@ function getMovieApi(searchValue) {
     };
     console.log(moveUrlByTitle);
 
-    fetch(moveUrlByTitle, options)
+    
+     //if there is history, don't call API
+     //check localstorage
+    if(searchHistory.some(e => e.title === searchValue)){
+        const i = searchHistory.findIndex(e => e.title === searchValue)
+        console.log("I didn't make api call");
+        renderMovie(searchHistory[i].movieData);
+    }
+    else{
+        console.log("Make new api call");
+        fetch(moveUrlByTitle, options)
         .then(response => response.json())
         .then((data) => {
             console.log(data);
@@ -100,31 +110,7 @@ function getMovieApi(searchValue) {
 
         })
         .catch(err => console.error(err));
-    
-     //if there is history, don't call API
-     //check localstorage
-    // if(searchHistory.filter(e => e.title === searchValue.length>0)){
-    //     const i = searchHistory.findIndex(e => e.title === searchHistory)
-    //     console.log("here exist");
-    //     renderMovie(searchHistory[i].movieData);
-    // }
-    // else{
-    //     fetch(moveUrlByTitle, options)
-    //     .then(response => response.json())
-    //     .then((data) => {
-    //         console.log(data);
-    //         var history={
-    //             title : searchValue,
-    //             movieData : data
-    //         }
-            
-    //         searchHistory.push(history);
-    //         storeMovieTitleHistory();
-    //         renderMovie(data);          
-
-    //     })
-    //     .catch(err => console.error(err));
-    // }
+    }
 
  }
 
