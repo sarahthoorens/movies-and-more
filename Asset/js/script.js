@@ -173,6 +173,7 @@ function renderMovie(data) {
     
 
 }
+
 function getYouTubApi(searchValue){
     var ApiKey = config.MY_YOUTUBE_API;
     var url = "https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=3&q=" + searchValue + "&key=" + ApiKey;
