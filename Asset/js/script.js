@@ -13,6 +13,8 @@ $("#search").on("click", (e) => {
 
 function getGiphyApi(searchValue) {
     var apiKey = "hf3SGj0CbnYvhzUwTN9wT4A4r5NeyuR5";
+    // Krims API Key
+    // var apiKey: '3f2383af8amsh1f1a97e33a6f968p1dd1b1jsna0638ec54c2b '
 
     var requestUrl = "https://api.giphy.com/v1/gifs/search?q=" + searchValue + "&limit=5&api_key=" + apiKey;
     console.log(requestUrl);
@@ -65,6 +67,8 @@ function getMovieApi(searchValue) {
         headers: {
             'X-RapidAPI-Key': 'e9d115ede6msh9a9b8592434a878p12c4dejsnde0b73ead6fc',
             'X-RapidAPI-Host': 'movie-database-alternative.p.rapidapi.com'
+            // Krims API Key
+            // 'X-RapidAPI-Key': '3f2383af8amsh1f1a97e33a6f968p1dd1b1jsna0638ec54c2b '
         }
     };
 
@@ -117,4 +121,6 @@ function renderMovie(data) {
 
 function getYouTubApi(searchValue){
     var ApiKey="AIzaSyAQOKHTETAoq0GtKMM4jrvTljYDqGbdsRY";
+        // Krims API Key
+        // 'X-RapidAPI-Key': '3f2383af8amsh1f1a97e33a6f968p1dd1b1jsna0638ec54c2b '
 }
