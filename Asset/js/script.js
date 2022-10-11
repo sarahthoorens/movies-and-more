@@ -89,6 +89,7 @@ function getMovieApi(searchValue) {
      //check localstorage
     if(searchHistory.filter(e => e.title === searchValue.length>0)){
         const i = searchHistory.findIndex(e => e.title === searchHistory)
+        console.log("here exist");
         renderMovie(searchHistory[i].movieData);
     }
     else{
