@@ -6,8 +6,7 @@ $("#search").on("click", (e) => {
     // document.location.replace("./index2_listing.html");
     console.log("after");
     //getGiphyApi(searchValue);
-    getMovieApi(searchValue);
-    
+    getMovieApi(searchValue); 
     getYouTubApi(searchValue);
     
 
@@ -26,6 +25,7 @@ function getGiphyApi(searchValue) {
             renderGiphy(params);
         });
 }
+
 function renderGiphy(params) {
 
     $("#giphy-container").empty();//init
@@ -50,7 +50,6 @@ function renderGiphy(params) {
         });
 
 
-
         rating.text("Rating: " + gifObj.rating);
         card_div.append(img, rating);
         card.append(card_div);
@@ -62,15 +61,18 @@ function renderGiphy(params) {
 
 function getMovieApi(searchValue) {
     console.log("here");
-    var moveUrlByTitle = 'https://movie-database-alternative.p.rapidapi.com/?s=' + searchValue + '&r=json&page=1'
-
+    
+    // var moveUrlByTitle = 'https://movie-database-alternative.p.rapidapi.com/?s=' + searchValue + '&r=json&page=1'
+    var moveUrlByTitle="https://online-movie-database.p.rapidapi.com/title/v2/find?title="+searchValue+"&titleType=movie&limit=6"
     const options = {
         method: 'GET',
         headers: {
             'X-RapidAPI-Key': config.MY_MOVIE_API,
-            'X-RapidAPI-Host': 'movie-database-alternative.p.rapidapi.com'
+            'X-RapidAPI-Host': 'online-movie-database.p.rapidapi.com'  //movie API Changed
         }
     };
+    console.log(moveUrlByTitle);
+    
 
     // $("#movie-container").empty();//init is it right position to init?
 
@@ -88,14 +90,14 @@ function getMovieApi(searchValue) {
 // Renders movie to Page 2
 function renderMovie(data) {
 
-    for (let i = 0; i < 6; i++) {   //set iterate twice because of limited api access use. needed to change
-        var id = data.Search[i].imdbID;
-        var type = data.Search[i].Type;
-        var title= data.Search[i].Title;
-        var imgSrc=data.Search[i].Poster;
+    for (let i = 0; i < data.results.length; i++) {   //set iterate twice because of limited api access use. needed to change
+        var id = data.results[i].id;
+        var type = data.results[i].titleType;
+        var title= data.results[i].title;
+        var imgSrc=data.results[i].image.url;
 
         console.log(data.Poster);
-        var div = $("<div>").addClass("cell cell small-6 large-4 auto button");
+        var div = $("<div>").addClass("cell cell small-6 large-4 auto button movieBox");
         var img = $("<img>").attr({"src": imgSrc,"data-open":"movieModal"});
         div.append(img);
         var h3=$("<h3>").text(title);

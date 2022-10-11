@@ -73,7 +73,7 @@ img {
   color:black;
 }
 .movieBox:hover img{
-  opacity: 0.5;
+  opacity: 0.3;
 }
 .movieBox:hover h3{
   opacity: 1;
