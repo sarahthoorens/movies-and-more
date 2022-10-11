@@ -102,6 +102,8 @@ function getMovieApi(searchValue) {
         })
         .catch(err => console.error(err));
 }
+
+// Renders movie to Page 2
 function renderMovie(data) {
  
     var imgSrc = data.Poster;
