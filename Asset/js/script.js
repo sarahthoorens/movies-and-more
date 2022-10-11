@@ -114,6 +114,7 @@ function renderMovie(data) {
     $("#movie-container").append(div);
 
 }
+
 function getYouTubApi(searchValue){
     var ApiKey="AIzaSyAQOKHTETAoq0GtKMM4jrvTljYDqGbdsRY";
 }
