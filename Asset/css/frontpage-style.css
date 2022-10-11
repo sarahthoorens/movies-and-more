@@ -13,6 +13,7 @@ html, body {
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
+  height: 100vh;
   font-family: 'Limelight', cursive;
   /* background-color: #86242A; */
 }
@@ -72,4 +73,7 @@ form {
 .button:hover {
   background-color: #e3b6b9;
   color: black;
+}
+footer {
+
 }
