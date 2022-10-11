@@ -10,6 +10,12 @@ $("#search").on("click", (e) => {
 
 
 });
+
+//index2_listing.html when you click one of list of movies
+$('#movie-result-container').on("click",(e)=>{
+    e.preventDefault();
+    console.log(e.target);
+})
 var searchHistory=[]; //localstorage for history
 
 function getGiphyApi(searchValue) {
@@ -83,9 +89,7 @@ function getMovieApi(searchValue) {
             'X-RapidAPI-Host': 'online-movie-database.p.rapidapi.com'  //movie API Changed
         }
     };
-    console.log(moveUrlByTitle);
-
-    
+   
      //if there is history, don't call API
      //check localstorage
     if(searchHistory.some(e => e.title === searchValue)){
@@ -99,6 +103,7 @@ function getMovieApi(searchValue) {
         .then(response => response.json())
         .then((data) => {
             console.log(data);
+
             var history={
                 title : searchValue,
                 movieData : data
@@ -127,8 +132,8 @@ function renderMovie(data) {
         var imgSrc=data.results[i].image.url;
 
         console.log(data.Poster);
-        var div = $("<div>").addClass("cell small-6 large-4 auto button movieBox");
-        var img = $("<img>").attr({"src": imgSrc,"data-open":"movieModal"});
+        var div = $("<div>").addClass("cell small-6 large-4 auto button movieBox").attr({"data-open":"movieModal","id": "gif-" + i});
+        var img = $("<img>").attr("src", imgSrc);
         div.append(img);
         var h3=$("<h3>").text(title);
         div.append(h3);
