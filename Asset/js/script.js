@@ -90,14 +90,17 @@ function renderMovie(data) {
 
     for (let i = 0; i < 6; i++) {   //set iterate twice because of limited api access use. needed to change
         var id = data.Search[i].imdbID;
-        var type = data.Search[i].type;
-        var title= data.Search[i].title;
+        var type = data.Search[i].Type;
+        var title= data.Search[i].Title;
         var imgSrc=data.Search[i].Poster;
 
         console.log(data.Poster);
         var div = $("<div>").addClass("cell cell small-6 large-4 auto button");
         var img = $("<img>").attr({"src": imgSrc,"data-open":"movieModal"});
         div.append(img);
+        var h3=$("<h3>").text(title);
+        div.append(h3);
+       
         $("#movie-result-container").append(div);
         
        

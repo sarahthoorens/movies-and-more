@@ -53,14 +53,32 @@ img {
   height: 90%;
   width: 100%;
 }
-
+.movieBox{
+  position:relative;
+}
 /* colors the back of image and title section */
 .h4-background {
   background: black;
 }
-img:hover{
+
+.movieBox h3{
+  transition: .5s ease;
+  opacity: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  text-align: center;
+  color:black;
+}
+.movieBox:hover img{
   opacity: 0.5;
 }
+.movieBox:hover h3{
+  opacity: 1;
+}
+
 
 
 
