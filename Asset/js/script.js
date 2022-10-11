@@ -84,16 +84,8 @@ function getMovieApi(searchValue) {
         }
     };
     console.log(moveUrlByTitle);
-    
-     //if there is history, don't call API
-     //check localstorage
-    if(searchHistory.filter(e => e.title === searchValue.length>0)){
-        const i = searchHistory.findIndex(e => e.title === searchHistory)
-        console.log("here exist");
-        renderMovie(searchHistory[i].movieData);
-    }
-    else{
-        fetch(moveUrlByTitle, options)
+
+    fetch(moveUrlByTitle, options)
         .then(response => response.json())
         .then((data) => {
             console.log(data);
@@ -108,7 +100,31 @@ function getMovieApi(searchValue) {
 
         })
         .catch(err => console.error(err));
-    }
+    
+     //if there is history, don't call API
+     //check localstorage
+    // if(searchHistory.filter(e => e.title === searchValue.length>0)){
+    //     const i = searchHistory.findIndex(e => e.title === searchHistory)
+    //     console.log("here exist");
+    //     renderMovie(searchHistory[i].movieData);
+    // }
+    // else{
+    //     fetch(moveUrlByTitle, options)
+    //     .then(response => response.json())
+    //     .then((data) => {
+    //         console.log(data);
+    //         var history={
+    //             title : searchValue,
+    //             movieData : data
+    //         }
+            
+    //         searchHistory.push(history);
+    //         storeMovieTitleHistory();
+    //         renderMovie(data);          
+
+    //     })
+    //     .catch(err => console.error(err));
+    // }
 
  }
 
@@ -125,7 +141,7 @@ function renderMovie(data) {
         var imgSrc=data.results[i].image.url;
 
         console.log(data.Poster);
-        var div = $("<div>").addClass("cell cell small-6 large-4 auto button movieBox");
+        var div = $("<div>").addClass("cell small-6 large-4 auto button movieBox");
         var img = $("<img>").attr({"src": imgSrc,"data-open":"movieModal"});
         div.append(img);
         var h3=$("<h3>").text(title);
