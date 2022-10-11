@@ -76,6 +76,7 @@ function getMovieApi(searchValue) {
 
     // var moveUrlByTitle = 'https://movie-database-alternative.p.rapidapi.com/?s=' + searchValue + '&r=json&page=1'
     var moveUrlByTitle="https://online-movie-database.p.rapidapi.com/title/v2/find?title="+searchValue+"&titleType=movie&limit=6"
+    
     const options = {
         method: 'GET',
         headers: {
@@ -141,9 +142,12 @@ function renderMovie(data) {
         var imgSrc=data.results[i].image.url;
 
         console.log(data.Poster);
+        
         var div = $("<div>").addClass("cell small-6 large-4 auto button movieBox");
+
         var img = $("<img>").attr({"src": imgSrc,"data-open":"movieModal"});
         div.append(img);
+
         var h3=$("<h3>").text(title);
         div.append(h3);
        
