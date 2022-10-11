@@ -11,10 +11,18 @@ $("#search").on("click", (e) => {
 
 });
 
+
 //index2_listing.html when you click one of list of movies
-$('#movie-result-container').on("click",(e)=>{
+$('#movie-result-container').on("click",".movieBox",(e)=>{
+//$('.movieBox').on("click",(e)=>{
     e.preventDefault();
     console.log(e.target);
+
+    var selectedMovieBox_elm=$(e.target).parent();
+    console.log(selectedMovieBox_elm[0].id);
+    // console.log(selectedMovieBox_elm.dataset.id);
+    // var id=selectedMovieBox_elm.dataset.id;
+    // console.log(selectedMovieBox_elm.dataset.id);
 })
 var searchHistory=[]; //localstorage for history
 
@@ -129,11 +137,17 @@ function renderMovie(data) {
         var id = data.results[i].id.slice(7,16); // /title/tt1412608/  -> tt1412608 for use of searching the detail info.
         var type = data.results[i].titleType;
         var title= data.results[i].title;
-        var imgSrc=data.results[i].image.url;
+        // if(data.results[i].image.hasOwnProperty(url)){
+            var imgSrc=data.results[i].image.url;
+        // }
+        // else{
+        //     var imgSrc=""
+        // }
+        
 
-        console.log(data.Poster);
-        var div = $("<div>").addClass("cell small-6 large-4 auto button movieBox").attr({"data-open":"movieModal","id": "gif-" + i});
-        var img = $("<img>").attr("src", imgSrc);
+        //console.log(data.Poster);
+        var div = $("<div>").addClass("cell small-6 large-4 auto button movieBox").attr("data-open","movieModal").attr("id" ,id);
+        var img = $("<img>").attr({"src": imgSrc,"alt":title});
         div.append(img);
         var h3=$("<h3>").text(title);
         div.append(h3);

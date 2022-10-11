@@ -79,6 +79,11 @@ img {
   opacity: 1;
 }
 
+#movieModal{
+  background-color: rgb(91, 82, 82);
+  padding : 10px;
+}
+
 
 
 
