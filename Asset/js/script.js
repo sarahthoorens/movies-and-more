@@ -2,17 +2,15 @@
 $("#search").on("click", (e) => {
     e.preventDefault();
     var searchValue = $("#searchInput").val();
-    console.log("before");
-    // document.location.replace("./index2_listing.html");
-    console.log("after");
-    //getGiphyApi(searchValue);
-    getMovieApi(searchValue);
     
+    //getGiphyApi(searchValue);
+    getMovieApi(searchValue); 
     getYouTubApi(searchValue);
     
 
 
 });
+var searchHistory=[]; //localstorage for history
 
 function getGiphyApi(searchValue) {
     var apiKey = config.MY_GIPHY_API;
@@ -26,6 +24,7 @@ function getGiphyApi(searchValue) {
             renderGiphy(params);
         });
 }
+
 function renderGiphy(params) {
 
     $("#giphy-container").empty();//init
@@ -50,7 +49,6 @@ function renderGiphy(params) {
         });
 
 
-
         rating.text("Rating: " + gifObj.rating);
         card_div.append(img, rating);
         card.append(card_div);
@@ -59,45 +57,80 @@ function renderGiphy(params) {
 
 
 }
+function storeMovieTitleHistory(){
+    localStorage.setItem("searchHistory", JSON.stringify(searchHistory));
+}
+function renderSearchHistory(){
+
+
+}
+function init(){
+    var storedHistory=JSON.parse(localStorage.getItem("searchHistory"));
+    if(storedHistory !== null){
+        searchHistory=storedHistory;
+    }
+}
+init();
 
 function getMovieApi(searchValue) {
-    console.log("here");
-    var moveUrlByTitle = 'https://movie-database-alternative.p.rapidapi.com/?s=' + searchValue + '&r=json&page=1'
 
+    // var moveUrlByTitle = 'https://movie-database-alternative.p.rapidapi.com/?s=' + searchValue + '&r=json&page=1'
+    var moveUrlByTitle="https://online-movie-database.p.rapidapi.com/title/v2/find?title="+searchValue+"&titleType=movie&limit=6"
     const options = {
         method: 'GET',
         headers: {
             'X-RapidAPI-Key': config.MY_MOVIE_API,
-            'X-RapidAPI-Host': 'movie-database-alternative.p.rapidapi.com'
+            'X-RapidAPI-Host': 'online-movie-database.p.rapidapi.com'  //movie API Changed
         }
     };
-
-    // $("#movie-container").empty();//init is it right position to init?
-
-
-    fetch(moveUrlByTitle, options)
+    console.log(moveUrlByTitle);
+    
+     //if there is history, don't call API
+     //check localstorage
+    if(searchHistory.filter(e => e.title === searchValue.length>0)){
+        const i = searchHistory.findIndex(e => e.title === searchHistory)
+        console.log("here exist");
+        renderMovie(searchHistory[i].movieData);
+    }
+    else{
+        fetch(moveUrlByTitle, options)
         .then(response => response.json())
         .then((data) => {
             console.log(data);
+            var history={
+                title : searchValue,
+                movieData : data
+            }
+            
+            searchHistory.push(history);
+            storeMovieTitleHistory();
             renderMovie(data);          
 
         })
         .catch(err => console.error(err));
-}
+    }
+
+ }
+
+
+    
 
 // Renders movie to Page 2
 function renderMovie(data) {
 
-    for (let i = 0; i < 6; i++) {   //set iterate twice because of limited api access use. needed to change
-        var id = data.Search[i].imdbID;
-        var type = data.Search[i].type;
-        var title= data.Search[i].title;
-        var imgSrc=data.Search[i].Poster;
+    for (let i = 0; i < data.results.length; i++) { 
+        var id = data.results[i].id.slice(7,16); // /title/tt1412608/  -> tt1412608 for use of searching the detail info.
+        var type = data.results[i].titleType;
+        var title= data.results[i].title;
+        var imgSrc=data.results[i].image.url;
 
         console.log(data.Poster);
-        var div = $("<div>").addClass("cell cell small-6 large-4 auto button");
+        var div = $("<div>").addClass("cell cell small-6 large-4 auto button movieBox");
         var img = $("<img>").attr({"src": imgSrc,"data-open":"movieModal"});
         div.append(img);
+        var h3=$("<h3>").text(title);
+        div.append(h3);
+       
         $("#movie-result-container").append(div);
         
        
