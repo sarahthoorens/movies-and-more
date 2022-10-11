@@ -2,9 +2,7 @@
 $("#search").on("click", (e) => {
     e.preventDefault();
     var searchValue = $("#searchInput").val();
-    console.log("before");
-    // document.location.replace("./index2_listing.html");
-    console.log("after");
+    
     //getGiphyApi(searchValue);
     getMovieApi(searchValue); 
     getYouTubApi(searchValue);
@@ -12,6 +10,7 @@ $("#search").on("click", (e) => {
 
 
 });
+var searchHistory=[]; //localstorage for history
 
 function getGiphyApi(searchValue) {
     var apiKey = config.MY_GIPHY_API;
@@ -58,10 +57,23 @@ function renderGiphy(params) {
 
 
 }
+function storeMovieTitleHistory(){
+    localStorage.setItem("searchHistory", JSON.stringify(searchHistory));
+}
+function renderSearchHistory(){
+
+
+}
+function init(){
+    var storedHistory=JSON.parse(localStorage.getItem("searchHistory"));
+    if(storedHistory !== null){
+        searchHistory=storedHistory;
+    }
+}
+init();
 
 function getMovieApi(searchValue) {
-    console.log("here");
-    
+
     // var moveUrlByTitle = 'https://movie-database-alternative.p.rapidapi.com/?s=' + searchValue + '&r=json&page=1'
     var moveUrlByTitle="https://online-movie-database.p.rapidapi.com/title/v2/find?title="+searchValue+"&titleType=movie&limit=6"
     const options = {
@@ -73,25 +85,40 @@ function getMovieApi(searchValue) {
     };
     console.log(moveUrlByTitle);
     
-
-    // $("#movie-container").empty();//init is it right position to init?
-
-
-    fetch(moveUrlByTitle, options)
+     //if there is history, don't call API
+     //check localstorage
+    if(searchHistory.filter(e => e.title === searchValue.length>0)){
+        const i = searchHistory.findIndex(e => e.title === searchHistory)
+        renderMovie(searchHistory[i].movieData);
+    }
+    else{
+        fetch(moveUrlByTitle, options)
         .then(response => response.json())
         .then((data) => {
             console.log(data);
+            var history={
+                title : searchValue,
+                movieData : data
+            }
+            
+            searchHistory.push(history);
+            storeMovieTitleHistory();
             renderMovie(data);          
 
         })
         .catch(err => console.error(err));
-}
+    }
+
+ }
+
+
+    
 
 // Renders movie to Page 2
 function renderMovie(data) {
 
-    for (let i = 0; i < data.results.length; i++) {   //set iterate twice because of limited api access use. needed to change
-        var id = data.results[i].id;
+    for (let i = 0; i < data.results.length; i++) { 
+        var id = data.results[i].id.slice(7,16); // /title/tt1412608/  -> tt1412608 for use of searching the detail info.
         var type = data.results[i].titleType;
         var title= data.results[i].title;
         var imgSrc=data.results[i].image.url;
