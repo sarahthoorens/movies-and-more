@@ -54,26 +54,37 @@
 
         </div>
       </section>
-      <section>
+      
         <!-- This is the first modal, put in separate section becasue JS was pushing divs below it in console. -->
-        <div class="grid-x reveal" id="movieModal" data-reveal>
-          <section class="cell large-7">
-            <article id="movie-info">
-        
-            </article>
-            <article id="giphy-info">
-        
-            </article>
-        
-          </section>
-                     
-          <section class="cell large-5">
-              <article id="youtube-info">
-        
-            </article>
-          </section>
+      <!-- <div class="grid-x grid-margin-x reveal large" id="movieModal" data-reveal>  -->
+      <div class="grid-y medium-grid-frame reveal large" id="movieModal" data-reveal> 
+        <!-- Add Close button -->
+        <button class="close-button" data-close aria-label="Close modal" type="button">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <div class="cell medium-auto medium-cell-block-container">
+          <div class="grid-x grid-padding-x">
+            <section class="cell medium-8 medium-cell-block-y grid-y">
+              <article class="cell" id="movie-info"></article>
+              </article>
+              
+              <article class="cell" id="giphy-info">
+                
+              </article>
+            </section>
+
+            <section class="cell medium-4 medium-cell-block-y">
+              <article  id="youtube-info">
+
+
+                
+                
+              </article>
+            </section>
+          </div>     
+        </div>  
       </div>
-      </section>
+     
     </main>
  
 

@@ -52,12 +52,41 @@ img {
   border: solid white 1px;
 }
 
+#movieModal{
+  background-color:rgb(17, 14, 14);
+  padding : 10px;
+  color: white;
+}
+/*Youtube card*/
+.card{
+  height: 100%;
+  width: 100%;
+  border-radius: 8px;
+  border: solid white 1px;
+  background-color: rgb(17, 14, 14);
+  color:white;
+  text-align: center;
+}
+.card:hover p{
+  color:gray;
+}
+#movie-info .card-section{
+  text-align: left;
+  padding:5px;
+}
+
+
+
+
 /* appending data with JS */
 .movieBox{
   position:relative;
   max-width: 400px;
   max-height: 600px;
-
+}
+.thumbnail img{
+  max-width: 400px;
+  max-height: 600px;
 }
 
 /* Javascript push */
@@ -82,11 +111,17 @@ img {
 .movieBox:hover h3{
   opacity: 1;
 }
+.media-object-section li{
+  display: inline;
+  list-style: none;
+  border-radius: 8px;
+  border: solid white 1px;
+  padding-right: 5px;
+  margin-right:5px;
 
-#movieModal{
-  background-color: rgb(91, 82, 82);
-  padding : 10px;
 }
+
+
 
 
 
