@@ -90,6 +90,7 @@ function getMovieApi(searchValue) {
 
     // var moveUrlByTitle = 'https://movie-database-alternative.p.rapidapi.com/?s=' + searchValue + '&r=json&page=1'
     var moveUrlByTitle="https://online-movie-database.p.rapidapi.com/title/v2/find?title="+searchValue+"&titleType=movie&limit=6"
+    
     const options = {
         method: 'GET',
         headers: {
@@ -149,6 +150,7 @@ function renderMovie(data) {
         var div = $("<div>").addClass("cell small-6 large-4 auto button movieBox").attr("data-open","movieModal").attr("id" ,id);
         var img = $("<img>").attr({"src": imgSrc,"alt":title});
         div.append(img);
+
         var h3=$("<h3>").text(title);
         div.append(h3);
        
@@ -178,6 +180,7 @@ function renderMovie(data) {
     
 
 }
+
 function getYouTubApi(searchValue){
     var ApiKey = config.MY_YOUTUBE_API;
     var url = "https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=3&q=" + searchValue + "&key=" + ApiKey;

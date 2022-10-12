@@ -6,6 +6,7 @@ body {
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
+  margin-top: 0;
 }
 
 /* header color */
@@ -32,35 +33,34 @@ main {
 }
 
 /* stylings for the linked card that show movies & titles */
-.card {
+/* .card {
   margin: 10px 20px 10px 10px;
   min-height: 450px;
   min-width: 250px;
   height: 80%;
-}
+} */
 
-/* movie titles under the image. */
-h4 {
-  font-family: 'Limelight', cursive;
-  font-weight: bold;
-  margin: 0;
-  color: white;
-  padding-top: 10px;
-}
+/* #movie-result-container {
+  background-color: black;
+} */
 
 /* keeps the image max widtha nd leaves room at bottom for movie title in black */
 img {
-  height: 90%;
+  height: 100%;
   width: 100%;
-}
-.movieBox{
-  position:relative;
-}
-/* colors the back of image and title section */
-.h4-background {
-  background: black;
+  border-radius: 8px;
+  border: solid white 1px;
 }
 
+/* appending data with JS */
+.movieBox{
+  position:relative;
+  max-width: 400px;
+  max-height: 600px;
+
+}
+
+/* Javascript push */
 .movieBox h3{
   transition: .5s ease;
   opacity: 0;
@@ -70,10 +70,14 @@ img {
   transform: translate(-50%, -50%);
   -ms-transform: translate(-50%, -50%);
   text-align: center;
-  color:black;
+  color:white;
+  font-family: 'Limelight', cursive;
+  max-height: 500px;
+  max-width: 350px;
 }
 .movieBox:hover img{
-  opacity: 0.3;
+  opacity: 0.8;
+  background-color: black;
 }
 .movieBox:hover h3{
   opacity: 1;
@@ -88,7 +92,7 @@ img {
 
 
 /* Smallest screen only attempts to keep image more rectangle instead of defaulting to a square.*/
-@media screen and (max-width: 39.9375em) {
+/* @media screen and (max-width: 39.9375em) {
   .card {
     margin-right: 20px;
     margin-left: 10px;
@@ -96,5 +100,5 @@ img {
     min-width: auto;
     height: 80%;
     }
-}
+} */
 
