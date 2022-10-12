@@ -19,6 +19,7 @@ $('#movie-result-container').on("click",".movieBox",(e)=>{
     e.preventDefault();   
     var selectedMovieBox_elm=$(e.target).parent(); //create .movieBox element
     var id = selectedMovieBox_elm[0].id;
+    console.log("click, searchvalue:"+searchValue,id);
     getMovieIDApi(id);
     getGiphyApi(searchValue);
     getYouTubApi(searchValue);
@@ -180,12 +181,15 @@ function renderMovie(data) {
         var id = data.results[i].id.slice(7,16); // /title/tt1412608/  -> tt1412608 for use of searching the detail info.
         var type = data.results[i].titleType;
         var title= data.results[i].title;
-        // if(data.results[i].image.hasOwnProperty(url)){
+        //Some data doesn't have poster url
+        if(data.results[i].hasOwnProperty('image')){
             var imgSrc=data.results[i].image.url;
-        // }
-        // else{
-        //     var imgSrc=""
-        // }
+        }
+        else{
+            console.log("don't have url");
+            break;
+        }
+       
         
 
         //console.log(data.Poster);
