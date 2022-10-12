@@ -58,16 +58,34 @@
         <!-- This is the first modal, put in separate section becasue JS was pushing divs below it in console. -->
       <!-- <div class="grid-x grid-margin-x reveal large" id="movieModal" data-reveal>  -->
       <div class="grid-y medium-grid-frame reveal large" id="movieModal" data-reveal> 
+        <!-- Add Close button -->
+        <button class="close-button" data-close aria-label="Close modal" type="button">
+          <span aria-hidden="true">&times;</span>
+        </button>
         <div class="cell medium-auto medium-cell-block-container">
           <div class="grid-x grid-padding-x">
-            <section class="cell medium-8 medium-cell-block-y">
-              <article id="movie-info">
-                <h3><strong>Movie</strong></h3>
+            <section class="cell medium-8 medium-cell-block-y grid-y">
+              <article class="cell" id="movie-info">
+                <!-- need to be created by js -->
+                <!-- <h3><strong>Avengers</strong></h3>
+                <div class="media-object stacked-for-large">
+                  <div class="media-object-section">
+                    <div class="thumbnail">
+                      <img src= "https://m.media-amazon.com/images/M/MV5BYTRiNDQwYzAtMzVlZS00NTI5LWJjYjUtMzkwNTUzMWMxZTllXkEyXkFqcGdeQXVyNDIzMzcwNjc@._V1_.jpg">
+                    </div>
+                  </div>
+                  <div class="media-object-section main-section">                
+                    <p>1997 - 2hr - 9.3/10</p>              
+                    <ul><li>action</li><li>drama</li><li>Adventure</li></ul>          
+                    <p>In the mythical continent of Westeros, several powerful families fight for control of the Seven Kingdoms. As conflict erupts in the kingdoms of men, an ancient enemy rises once again to threaten them all. Meanwhile, the last heirs of a recently usurped dynasty plot to take back their homeland from across the Narrow Sea.</p>               
+                  </div> -->
               </article>
-              <article class="grid-x grid-padding-x small-up-2 medium-up-4 large-up-6" id="giphy-info">
+              
+              <article class="cell" id="giphy-info">
                 <h3><strong>Giphy</strong></h3>
               </article>
             </section>
+
             <section class="cell medium-4 medium-cell-block-y">
               <article  id="youtube-info">
                 <h3><strong>YouTube</strong></h3>

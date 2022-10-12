@@ -18,17 +18,69 @@ $('#movie-result-container').on("click",".movieBox",(e)=>{
 //$('.movieBox').on("click",(e)=>{
     e.preventDefault();   
     var selectedMovieBox_elm=$(e.target).parent(); //create .movieBox element
-    console.log(selectedMovieBox_elm[0].id);
-
+    var id = selectedMovieBox_elm[0].id;
+    getMovieIDApi(id);
     getGiphyApi(searchValue);
     getYouTubApi(searchValue);
    
 })
 
-function getMovieIDApi(){
+function getMovieIDApi(id){
+    var moveUrlByID="https://online-movie-database.p.rapidapi.com/title/get-overview-details?tconst="+id+"&currentCountry=US";
+    
+    const options = {
+        method: 'GET',
+        headers: {
+            'X-RapidAPI-Key': config.MY_MOVIE_API,
+            'X-RapidAPI-Host': 'online-movie-database.p.rapidapi.com'
+        }
+    };
+    
+    fetch(moveUrlByID, options)
+        .then(response => response.json())
+        .then((data) => {
+            console.log(data);
+            renderMovieModal(data);
+            //storeMovieIDResult(data);
+        })
+        .catch(err => console.error(err));
+
+        // if(searchHistory.some(e => e.title === searchValue))
+        // if(searchHistory.some(e => e.s))
+        
+        //     const i = searchHistory.findIndex(e => e.title === searchValue)
+        //     console.log("I didn't make api call");
+        //     renderMovie(searchHistory[i].movieData);
+        // }
+        // else{
+        //     console.log("Make new api call");
+        //     fetch(moveUrlByID, options)
+        //     .then(response => response.json())
+        //     .then((data) => {
+        //         console.log(data);
+    
+        //         var history={
+        //             title : searchValue,
+        //             movieData : data,
+        //         }
+                
+        //         searchHistory.push(history);
+        //         storeMovieTitleHistory();
+        //         renderMovie(data);          
+    
+        //     })
+        //     .catch(err => console.error(err));
+        // }
+
 
 }
-var searchHistory=[]; //localstorage for history
+
+var searchHistory=[]; //local storage for history
+var movieIDHistory=[]; // local storage for movie search by id
+
+function storeMovieIDResult(){
+    // localStorage.setItem("movieIDHistory", JSON.stringify(movieIDHistory));
+}
 
 function getGiphyApi(searchValue) {
     var apiKey = config.MY_GIPHY_API;
@@ -46,23 +98,26 @@ function getGiphyApi(searchValue) {
 function renderGiphy(params) { ///Carousel will be added
 
     $("#giphy-info").empty();//init
-    $("#giphy-info").append('<h3><strong>GIPHY<strong></h3>').addClass("grid-x");
+    $("#giphy-info").append('<h3><strong>GIPHY<strong></h3>');
+   
+   var div=$("<div>").addClass("grid-x grid-padding-x medium-up-4 large-up-6");
 
     $.each(params.data, function (i, value) {
         console.log(value);
         var gif = value.images.fixed_height.url;
         var gifURL = value.url;
         var gifTitle = value.title;
-        $('#giphy-info').append('<li class="card cell"><a href='+ gifURL + '" target="_blank"><div><img src="' + gif + '"></div><article class="card-text"><p class="video-title">' + gifTitle + '</p></article></a></li>');
+        div.append('<li class="card cell"><a href='+ gifURL + '" target="_blank"><div><img src="' + gif + '"></div></a></li>');
     });
-
+    $("#giphy-info").append(div);
+    
 
 
 }
 function storeMovieTitleHistory(){
     localStorage.setItem("searchHistory", JSON.stringify(searchHistory));
 }
-function renderSearchHistory(){
+function renderSearchHistory(){  ///first page for history
 
 
 }
@@ -146,8 +201,25 @@ function renderMovie(data) {
 
     }
 
- 
-    
+}
+function renderMovieModal(data){
+    $("#movie-info").empty();//init
+  
+    var title=data.title.title;
+    var imgSrc=data.title.image.url;
+    var year=data.title.year;
+    var genre=data.genre; //object
+    var plot=data.plotSummary.text;
+    var rating=data.ratings.rating;
+    var runTime=data.title.runningTimeInMinutes;
+  
+
+
+    $("#movie-info").append('<h3><strong>'+title+'</strong></h3><div class="media-object stacked-for-large"><div class="media-object-section"><div class="thumbnail"><img src='+imgSrc+'></div></div><div class="media-object-section main-section"><p>'+year+" - "+ runTime +"min - "+ rating+"/10</p><p>"+plot+'</p></div>')
+
+
+
+
 
 }
 
@@ -166,15 +238,18 @@ function getYouTubApi(searchValue){
 
 }
 function renderYouTubeModal(data){
-    
-        $.each(data.items, function (i, value) {
-            console.log(value);
-            var channel = value.snippet.channelTitle;
-            var videoURL = value.id.videoId;
-            var videoTitle = value.snippet.title;
-            var videoThumbnail = value.snippet.thumbnails.medium.url;
-            $('#youtube-info').append('<li class="card"><a href="https://www.youtube.com/watch?v=' + videoURL + '" target="_blank"><div><img src="' + videoThumbnail + '"></div><article class="card-text"><small>' + channel + '</small><p class="video-title">' + videoTitle + '</p></article></a></li>');
-        });
+
+    $('#youtube-info').empty(); //init
+    $("#youtube-info").append('<h3><strong>YouTube<strong></h3>').addClass("grid-x");
+
+    $.each(data.items, function (i, value) {
+        console.log(value);
+        var channel = value.snippet.channelTitle;
+        var videoURL = value.id.videoId;
+        var videoTitle = value.snippet.title;
+        var videoThumbnail = value.snippet.thumbnails.medium.url;
+        $('#youtube-info').append('<li class="card"><a href="https://www.youtube.com/watch?v=' + videoURL + '" target="_blank"><div><img src="' + videoThumbnail + '"></div><article class="card-text"><small>' + channel + '</small><p class="video-title">' + videoTitle + '</p></article></a></li>');
+    });
     
     
 }
