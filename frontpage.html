@@ -18,11 +18,10 @@
 </head>
 
 <body>
-    <main>
-        <section class="top-bar">
-            <div class="menu-centered top-bar-left">
+        <section class="top-bar grid-x">
+            <div class="menu-centered top-bar-left cell">
                 <ul class="menu">
-                    <li id="home-title"><a href="#">Movies & More</a></li>
+                    <li id="home-title"><a href="#"><h1>Movies & More</h1></a></li>
                 </ul>
                 <div class="menu-centered top-bar-right">
                     <ul class="menu">
@@ -33,8 +32,11 @@
                 </div>
             </div>
         </section>
-        <section class="hero">
+    <main class = "grid-x grid-padding-x">
+        <section class="hero flex-container flex-dir-column ">
+          <div class="lead-text">
             <h3>Looking for information about a movie?</h3><p>Enter a movie title in the search bar below and find out more about it!</p>
+          </div>
             <form id="searchBar" class="searchBar">
                 <div class="input">
                     <span class="offscreen input-label" for="search"></span>
@@ -45,8 +47,11 @@
                 </div>
             </form>
         </section>
-        <section class="previousSearches">
-            <div class="moviePoster">
+    <div class="grid-container fluid">
+        <section class="searchHistoryContainer grid-x grid-margin-x small-up-2 medium-up-3">
+            <!-- JavaScript-populated code -->
+            
+            <!-- <div class="moviePoster">
                 <a href=""><img src="" alt="Movie poster from previous searches"></a>
             </div>
             <div class="moviePoster">
@@ -54,13 +59,15 @@
             </div>
             <div class="moviePoster">
                 <a href=""><img src="" alt="Movie poster from previous searches"></a>
-            </div>
+            </div> -->
+        
         </section>
-    </main>
-    <footer>
+    </div>
+ </main>
+    <!-- <footer>
         <p><span aria-hidden="true"></span> Powered by <a href="https://youtube.com" target="_blank">YouTube</a></p> &
         <p><span aria-hidden="true"></span> <a href="https://giphy.com" target="_blank">Giphy</a></p>
-    </footer>
+    </footer> -->
 
 
 </body>
