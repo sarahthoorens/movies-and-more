@@ -1,0 +1,95 @@
+
+/* settings for background image */
+body {
+  background: url(https://images.unsplash.com/photo-1595769816263-9b910be24d5f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1479&q=80) no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+/* header color */
+header {
+  background-color: rgb(134, 36, 42);
+}
+
+/* h1 styling, includes google font. */
+h1 {
+  font-family: 'Limelight', cursive;
+  font-weight: bold;
+  margin: 0;
+}
+
+/* removes styling for links in movies and h1 home. */
+a {
+  color: white;
+  text-decoration: none;
+}
+
+/* to push the leftmost movies away from hugging the left side. */
+main {
+  margin-left: 15px;
+}
+
+/* stylings for the linked card that show movies & titles */
+.card {
+  margin: 10px 20px 10px 10px;
+  min-height: 450px;
+  min-width: 250px;
+  height: 80%;
+}
+
+/* movie titles under the image. */
+h4 {
+  font-family: 'Limelight', cursive;
+  font-weight: bold;
+  margin: 0;
+  color: white;
+  padding-top: 10px;
+}
+
+/* keeps the image max widtha nd leaves room at bottom for movie title in black */
+img {
+  height: 90%;
+  width: 100%;
+}
+.movieBox{
+  position:relative;
+}
+/* colors the back of image and title section */
+.h4-background {
+  background: black;
+}
+
+.movieBox h3{
+  transition: .5s ease;
+  opacity: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  text-align: center;
+  color:black;
+}
+.movieBox:hover img{
+  opacity: 0.3;
+}
+.movieBox:hover h3{
+  opacity: 1;
+}
+
+
+
+
+/* Smallest screen only attempts to keep image more rectangle instead of defaulting to a square.*/
+@media screen and (max-width: 39.9375em) {
+  .card {
+    margin-right: 20px;
+    margin-left: 10px;
+    min-height: 600px;
+    min-width: auto;
+    height: 80%;
+    }
+}
+
