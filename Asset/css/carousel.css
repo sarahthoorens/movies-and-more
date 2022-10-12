@@ -100,19 +100,29 @@
   }
   
   .carousel__slide {
-    position: relative;
+    /* position: relative;
     flex: 0 0 100%;
     width: 100%;
-    background-color: #f99;
+    counter-increment: item; */
+    margin-left: auto;
+    position: relative;
+    flex: 0 0 100%;
+    /* width: 100%; */
     counter-increment: item;
+    display: flex;
+    justify-content: space-around;
+    align-content: center;
+    align-items: center;
+    margin-right: auto;
   }
   
   .carousel__slide:nth-child(even) {
-    background-color: #99f;
+    /* background-image: url(../images/backgroundimage.jpg); */
+    /* background-color: #99f; */
   }
   
   .carousel__slide:before {
-    content: counter(item);
+    /* content: counter(item); */
     position: absolute;
     top: 50%;
     left: 50%;
