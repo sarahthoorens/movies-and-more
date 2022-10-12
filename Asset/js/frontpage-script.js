@@ -33,7 +33,7 @@ const searchHistoryContent = `
 			<div class="centered-text">
 				<h4>${results[i].title}</h4>
 			</div>	
-		<a href="<--link to modal-->"><img src="${results[i].image.url}" alt="${results[i].title} poster style="width:100%""></a>
+		<a href="<!--link to modal-->"><img src="${results[i].image.url}" alt="${results[i].title} poster style="width:100%""></a>
 	</div>
 </div>
 <div class="moviePoster-2 cell-small-4">
@@ -42,7 +42,7 @@ const searchHistoryContent = `
 			<div class="centered-text">
 				<h4>${results[i+1].title}</h4>
 			</div>	
-		<a href="<--link to modal-->"><img src="${results[i+1].image.url}" alt="${results[i+1].title} poster style="width:100%""></a>
+		<a href="<!--link to modal-->"><img src="${results[i+1].image.url}" alt="${results[i+1].title} poster style="width:100%""></a>
 	</div>
 </div>
 <div class="moviePoster-3 cell-small-4">
@@ -51,7 +51,7 @@ const searchHistoryContent = `
 			<div class="centered-text">
 				<h4>${results[i+2].title}</h4>
 			</div>	
-		<a href="<--link to modal-->"><img src="${results[i+2].image.url}" alt="${results[i+2].title} poster style="width:100%""></a>
+		<a href="<!--link to modal-->"><img src="${results[i+2].image.url}" alt="${results[i+2].title} poster style="width:100%""></a>
 	</div>
 </div>
 	`
