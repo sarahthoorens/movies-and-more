@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.7.5/css/foundation.min.css"
+        integrity="sha512-IyYpCJ+7aODR+LWiU+buuFnKg69IYu7SCmn+3IBNxvEcfsDC7z1xyWhAZTAFTGTlLMnDwcQBFWhhe7JiSw6TEg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/foundation-essential/6.0.6/js/vendor/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/foundation-sites@6.5.1/dist/js/foundation.min.js"
+        integrity="sha256-WUKHnLrIrx8dew//IpSEmPN/NT3DGAEmIePQYIEJLLs= sha384-53StQWuVbn6figscdDC3xV00aYCPEz3srBdV/QGSXw3f19og3Tq2wTRe0vJqRTEO sha512-X9O+2f1ty1rzBJOC8AXBnuNUdyJg0m8xMKmbt9I3Vu/UOWmSg5zG+dtnje4wAZrKtkopz/PEDClHZ1LXx5IeOw=="
+        crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Limelight&display=swap">
+    <link rel="stylesheet" href="./Asset/css/frontpage-style.css">
+    <title>Movies and more</title>
+</head>
+
+<body>
+
+        <section class="top-bar grid-x">
+            <div class="menu-centered top-bar-left cell">
+                <ul class="menu">
+                    <li id="home-title"><a href="#"><h1>Movies & More</h1></a></li>
+                </ul>
+                <div class="menu-centered top-bar-right">
+                    <ul class="menu">
+                        <li><a href="#">About</a></li>
+                        <li><a href="#">Search</a></li>
+                        <li><a href="#">Search History</a></li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    <main class = "grid-x grid-padding-x">
+        <section class="hero flex-container flex-dir-column ">
+          <div class="lead-text">
+            <h3>Looking for information about a movie?</h3><p>Enter a movie title in the search bar below and find out more about it!</p>
+          </div>
+            <form id="searchBar" class="searchBar">
+                <div class="input">
+                    <span class="offscreen input-label" for="search"></span>
+                    <input id="search" class="input-field" type="text" placeholder="🎬  Search for movies">
+                    <div id="clear" class="input-button clear" role="button" aria-label="Clear search terms">
+                    </div>
+                    <input id="searchButton" type="submit" class="button expanded" aria-label="Submit button">
+                </div>
+            </form>
+        </section>
+    <div class="grid-container fluid">
+        <section class="searchHistoryContainer grid-x grid-margin-x small-up-2 medium-up-3">
+            <!-- JavaScript-populated code -->
+            
+            <!-- <div class="moviePoster">
+                <a href=""><img src="" alt="Movie poster from previous searches"></a>
+            </div>
+            <div class="moviePoster">
+                <a href=""><img src="" alt="Movie poster from previous searches"></a>
+            </div>
+            <div class="moviePoster">
+                <a href=""><img src="" alt="Movie poster from previous searches"></a>
+            </div> -->
+        
+        </section>
+    </div>
+ </main>
+    <!-- <footer>
+        <p><span aria-hidden="true"></span> Powered by <a href="https://youtube.com" target="_blank">YouTube</a></p> &
+        <p><span aria-hidden="true"></span> <a href="https://giphy.com" target="_blank">Giphy</a></p>
+    </footer> -->
+
+
+</body>
+
+</html>
+<script src="./Asset/js/frontpage-script.js"></script>

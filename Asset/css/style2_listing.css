@@ -1,0 +1,139 @@
+
+/* settings for background image */
+body {
+  background: url(https://images.unsplash.com/photo-1595769816263-9b910be24d5f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1479&q=80) no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  margin-top: 0;
+}
+
+/* header color */
+header {
+  background-color: rgb(134, 36, 42);
+}
+
+/* h1 styling, includes google font. */
+h1 {
+  font-family: 'Limelight', cursive;
+  font-weight: bold;
+  margin: 0;
+}
+
+/* removes styling for links in movies and h1 home. */
+a {
+  color: white;
+  text-decoration: none;
+}
+
+/* to push the leftmost movies away from hugging the left side. */
+main {
+  margin-left: 15px;
+}
+
+/* stylings for the linked card that show movies & titles */
+/* .card {
+  margin: 10px 20px 10px 10px;
+  min-height: 450px;
+  min-width: 250px;
+  height: 80%;
+} */
+
+/* #movie-result-container {
+  background-color: black;
+} */
+
+/* keeps the image max widtha nd leaves room at bottom for movie title in black */
+img {
+  height: 100%;
+  width: 100%;
+  border-radius: 8px;
+  border: solid white 1px;
+}
+
+#movieModal{
+  background-color:rgb(17, 14, 14);
+  padding : 10px;
+  color: white;
+}
+/*Youtube card*/
+.card{
+  height: 100%;
+  width: 100%;
+  border-radius: 8px;
+  border: solid white 1px;
+  background-color: rgb(17, 14, 14);
+  color:white;
+  text-align: center;
+}
+.card:hover p{
+  color:gray;
+}
+#movie-info .card-section{
+  text-align: left;
+  padding:5px;
+}
+
+
+
+
+/* appending data with JS */
+.movieBox{
+  position:relative;
+  max-width: 400px;
+  max-height: 600px;
+}
+.thumbnail img{
+  max-width: 400px;
+  max-height: 600px;
+}
+
+/* Javascript push */
+.movieBox h3{
+  transition: .5s ease;
+  opacity: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  text-align: center;
+  color:white;
+  font-family: 'Limelight', cursive;
+  max-height: 500px;
+  max-width: 350px;
+}
+.movieBox:hover img{
+  opacity: 0.8;
+  background-color: black;
+}
+.movieBox:hover h3{
+  opacity: 1;
+}
+.media-object-section li{
+  display: inline;
+  list-style: none;
+  border-radius: 8px;
+  border: solid white 1px;
+  padding-right: 5px;
+  margin-right:5px;
+
+}
+
+
+
+
+
+
+/* Smallest screen only attempts to keep image more rectangle instead of defaulting to a square.*/
+/* @media screen and (max-width: 39.9375em) {
+  .card {
+    margin-right: 20px;
+    margin-left: 10px;
+    min-height: 600px;
+    min-width: auto;
+    height: 80%;
+    }
+} */
+
