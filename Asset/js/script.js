@@ -1,15 +1,30 @@
 //  $(document).foundation();  // to be existed?
+var searchValue="";
 $("#search").on("click", (e) => {
     e.preventDefault();
-    var searchValue = $("#searchInput").val();
+    searchValue = $("#searchInput").val();
     
     //getGiphyApi(searchValue);
     getMovieApi(searchValue); 
-    getYouTubApi(searchValue);
+    //getYouTubApi(searchValue);
     
 
 
 });
+
+
+//index2_listing.html when you click one of list of movies
+$('#movie-result-container').on("click",".movieBox",(e)=>{
+//$('.movieBox').on("click",(e)=>{
+    e.preventDefault();   
+    var selectedMovieBox_elm=$(e.target).parent(); //create .movieBox element
+    console.log(selectedMovieBox_elm[0].id);
+//suseh/rated/hour/genre/plot/topcast/mainchracter/director
+
+    getGiphyApi(searchValue);
+    getYouTubApi(searchValue);
+   
+})
 var searchHistory=[]; //localstorage for history
 
 function getGiphyApi(searchValue) {
@@ -27,9 +42,9 @@ function getGiphyApi(searchValue) {
 
 function renderGiphy(params) {
 
-    $("#giphy-container").empty();//init
-    var header = $("<h1>").text("GIPHY >").attr("font-weight", "500").addClass("cell");
-    $("#giphy-container").append(header);
+    $("#giphy-info").empty();//init
+    var header = $("<h3>").text("GIPHY >").attr("font-weight", "500").addClass("cell");
+    $("#giphy-info").append(header);
 
 
     for (i = 0; i < params.data.length; i++) {
@@ -52,7 +67,7 @@ function renderGiphy(params) {
         rating.text("Rating: " + gifObj.rating);
         card_div.append(img, rating);
         card.append(card_div);
-        $("#giphy-container").append(card);
+        $("#giphy-info").append(card);
     }
 
 
@@ -84,12 +99,21 @@ function getMovieApi(searchValue) {
             'X-RapidAPI-Host': 'online-movie-database.p.rapidapi.com'  //movie API Changed
         }
     };
-    console.log(moveUrlByTitle);
-
-    fetch(moveUrlByTitle, options)
+   
+     //if there is history, don't call API
+     //check localstorage
+    if(searchHistory.some(e => e.title === searchValue)){
+        const i = searchHistory.findIndex(e => e.title === searchValue)
+        console.log("I didn't make api call");
+        renderMovie(searchHistory[i].movieData);
+    }
+    else{
+        console.log("Make new api call");
+        fetch(moveUrlByTitle, options)
         .then(response => response.json())
         .then((data) => {
             console.log(data);
+
             var history={
                 title : searchValue,
                 movieData : data
@@ -101,31 +125,7 @@ function getMovieApi(searchValue) {
 
         })
         .catch(err => console.error(err));
-    
-     //if there is history, don't call API
-     //check localstorage
-    // if(searchHistory.filter(e => e.title === searchValue.length>0)){
-    //     const i = searchHistory.findIndex(e => e.title === searchHistory)
-    //     console.log("here exist");
-    //     renderMovie(searchHistory[i].movieData);
-    // }
-    // else{
-    //     fetch(moveUrlByTitle, options)
-    //     .then(response => response.json())
-    //     .then((data) => {
-    //         console.log(data);
-    //         var history={
-    //             title : searchValue,
-    //             movieData : data
-    //         }
-            
-    //         searchHistory.push(history);
-    //         storeMovieTitleHistory();
-    //         renderMovie(data);          
-
-    //     })
-    //     .catch(err => console.error(err));
-    // }
+    }
 
  }
 
@@ -139,13 +139,17 @@ function renderMovie(data) {
         var id = data.results[i].id.slice(7,16); // /title/tt1412608/  -> tt1412608 for use of searching the detail info.
         var type = data.results[i].titleType;
         var title= data.results[i].title;
-        var imgSrc=data.results[i].image.url;
-
-        console.log(data.Poster);
+        // if(data.results[i].image.hasOwnProperty(url)){
+            var imgSrc=data.results[i].image.url;
+        // }
+        // else{
+        //     var imgSrc=""
+        // }
         
-        var div = $("<div>").addClass("cell small-6 large-4 auto button movieBox");
 
-        var img = $("<img>").attr({"src": imgSrc,"data-open":"movieModal"});
+        //console.log(data.Poster);
+        var div = $("<div>").addClass("cell small-6 large-4 auto button movieBox").attr("data-open","movieModal").attr("id" ,id);
+        var img = $("<img>").attr({"src": imgSrc,"alt":title});
         div.append(img);
 
         var h3=$("<h3>").text(title);
@@ -200,7 +204,7 @@ function renderYouTubeModal(data){
             var videoURL = value.id.videoId;
             var videoTitle = value.snippet.title;
             var videoThumbnail = value.snippet.thumbnails.medium.url;
-            $('#music-container').append('<li class="card"><a href="https://www.youtube.com/watch?v=' + videoURL + '" target="_blank"><div><img src="' + videoThumbnail + '"></div><article class="card-text"><small>' + channel + '</small><h1 class="video-title">' + videoTitle + '</h1></article></a></li>');
+            $('#youtube-info').append('<li class="card"><a href="https://www.youtube.com/watch?v=' + videoURL + '" target="_blank"><div><img src="' + videoThumbnail + '"></div><article class="card-text"><small>' + channel + '</small><h3 class="video-title">' + videoTitle + '</h3></article></a></li>');
         });
     
     
