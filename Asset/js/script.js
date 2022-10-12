@@ -1,7 +1,8 @@
 //  $(document).foundation();  // to be existed?
+var searchValue="";
 $("#search").on("click", (e) => {
     e.preventDefault();
-    var searchValue = $("#searchInput").val();
+    searchValue = $("#searchInput").val();
     
     //getGiphyApi(searchValue);
     getMovieApi(searchValue); 
@@ -15,14 +16,14 @@ $("#search").on("click", (e) => {
 //index2_listing.html when you click one of list of movies
 $('#movie-result-container').on("click",".movieBox",(e)=>{
 //$('.movieBox').on("click",(e)=>{
-    e.preventDefault();
-    console.log(e.target);
-
-    var selectedMovieBox_elm=$(e.target).parent();
+    e.preventDefault();   
+    var selectedMovieBox_elm=$(e.target).parent(); //create .movieBox element
     console.log(selectedMovieBox_elm[0].id);
-    // console.log(selectedMovieBox_elm.dataset.id);
-    // var id=selectedMovieBox_elm.dataset.id;
-    // console.log(selectedMovieBox_elm.dataset.id);
+//suseh/rated/hour/genre/plot/topcast/mainchracter/director
+
+    getGiphyApi(searchValue);
+    getYouTubApi(searchValue);
+   
 })
 var searchHistory=[]; //localstorage for history
 
@@ -41,9 +42,9 @@ function getGiphyApi(searchValue) {
 
 function renderGiphy(params) {
 
-    $("#giphy-container").empty();//init
-    var header = $("<h1>").text("GIPHY >").attr("font-weight", "500").addClass("cell");
-    $("#giphy-container").append(header);
+    $("#giphy-info").empty();//init
+    var header = $("<h3>").text("GIPHY >").attr("font-weight", "500").addClass("cell");
+    $("#giphy-info").append(header);
 
 
     for (i = 0; i < params.data.length; i++) {
@@ -66,7 +67,7 @@ function renderGiphy(params) {
         rating.text("Rating: " + gifObj.rating);
         card_div.append(img, rating);
         card.append(card_div);
-        $("#giphy-container").append(card);
+        $("#giphy-info").append(card);
     }
 
 
@@ -203,7 +204,7 @@ function renderYouTubeModal(data){
             var videoURL = value.id.videoId;
             var videoTitle = value.snippet.title;
             var videoThumbnail = value.snippet.thumbnails.medium.url;
-            $('#music-container').append('<li class="card"><a href="https://www.youtube.com/watch?v=' + videoURL + '" target="_blank"><div><img src="' + videoThumbnail + '"></div><article class="card-text"><small>' + channel + '</small><h1 class="video-title">' + videoTitle + '</h1></article></a></li>');
+            $('#youtube-info').append('<li class="card"><a href="https://www.youtube.com/watch?v=' + videoURL + '" target="_blank"><div><img src="' + videoThumbnail + '"></div><article class="card-text"><small>' + channel + '</small><h3 class="video-title">' + videoTitle + '</h3></article></a></li>');
         });
     
     
