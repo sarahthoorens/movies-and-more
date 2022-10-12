@@ -213,13 +213,19 @@ function renderMovieModal(data){
     var imgSrc=data.title.image.url;
     var year=data.title.year;
     var genre=data.genre; //object
-    var plot=data.plotSummary.text;
+    //Some movie doesn't have plotSummary object, 
+    if(data.hasOwnProperty("plotSummary")){
+        var plot=data.plotSummary.text;
+    }
+    else{
+        var plot=data.plotOutline.text;
+    }
     var rating=data.ratings.rating;
     var runTime=data.title.runningTimeInMinutes;
   
 
 
-    $("#movie-info").append('<h3><strong>'+title+'</strong></h3><div class="media-object stacked-for-large"><div class="media-object-section"><div class="thumbnail"><img src='+imgSrc+'></div></div><div class="media-object-section main-section"><p>'+year+" - "+ runTime +"min - "+ rating+"/10</p><p>"+plot+'</p></div>')
+    $("#movie-info").append('<h3><strong>'+title+'</stgirong></h3><div class="media-object stacked-for-large"><div class="media-object-section"><div class="thumbnail"><img src='+imgSrc+'></div></div><div class="media-object-section main-section"><p>'+year+" - "+ runTime +"min - "+ rating+"/10</p><p>"+plot+'</p></div>')
 
 
 
