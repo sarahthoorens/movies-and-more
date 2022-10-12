@@ -19,12 +19,15 @@ $('#movie-result-container').on("click",".movieBox",(e)=>{
     e.preventDefault();   
     var selectedMovieBox_elm=$(e.target).parent(); //create .movieBox element
     console.log(selectedMovieBox_elm[0].id);
-//suseh/rated/hour/genre/plot/topcast/mainchracter/director
 
     getGiphyApi(searchValue);
     getYouTubApi(searchValue);
    
 })
+
+function getMovieIDApi(){
+
+}
 var searchHistory=[]; //localstorage for history
 
 function getGiphyApi(searchValue) {
@@ -40,35 +43,19 @@ function getGiphyApi(searchValue) {
         });
 }
 
-function renderGiphy(params) {
+function renderGiphy(params) { ///Carousel will be added
 
     $("#giphy-info").empty();//init
-    var header = $("<h3>").text("GIPHY >").attr("font-weight", "500").addClass("cell");
-    $("#giphy-info").append(header);
+    $("#giphy-info").append('<h3><strong>GIPHY<strong></h3>').addClass("grid-x");
 
+    $.each(params.data, function (i, value) {
+        console.log(value);
+        var gif = value.images.fixed_height.url;
+        var gifURL = value.url;
+        var gifTitle = value.title;
+        $('#giphy-info').append('<li class="card cell"><a href='+ gifURL + '" target="_blank"><div><img src="' + gif + '"></div><article class="card-text"><p class="video-title">' + gifTitle + '</p></article></a></li>');
+    });
 
-    for (i = 0; i < params.data.length; i++) {
-
-        var card = $("<div>").addClass("card gif-box cell auto").attr("id", "gif-" + i);;
-        var card_div = $("<div>").addClass("card-section");
-        var rating = $("<h6>");
-        var gifObj = params.data[i];
-        var gif = gifObj.images;
-        var img = $("<img>").attr({
-            // "width": "200px",
-            src: gif.fixed_height.url,
-            // "data-animate": gif.fixed_height.url,
-            // "data-still": gif.fixed_height_still.url,
-            // "data-state": "animate",
-            class: "gif"
-        });
-
-
-        rating.text("Rating: " + gifObj.rating);
-        card_div.append(img, rating);
-        card.append(card_div);
-        $("#giphy-info").append(card);
-    }
 
 
 }
@@ -89,7 +76,6 @@ init();
 
 function getMovieApi(searchValue) {
 
-    // var moveUrlByTitle = 'https://movie-database-alternative.p.rapidapi.com/?s=' + searchValue + '&r=json&page=1'
     var moveUrlByTitle="https://online-movie-database.p.rapidapi.com/title/v2/find?title="+searchValue+"&titleType=movie&limit=6"
     
     const options = {
@@ -157,23 +143,6 @@ function renderMovie(data) {
        
         $("#movie-result-container").append(div);
         
-       
-
-        // var movieByIdUrl = 'https://movie-database-alternative.p.rapidapi.com/?r=json&i=' + id;
-        // // if (type === "movie") {   //need some filtering
-        // fetch(movieByIdUrl, options)
-        //     .then(response => response.json())
-        //     .then((data) => {
-        //         console.log("success");
-        //         console.log(data);
-        //         renderMovie(data);
-
-        //     })
-        //     .catch(err => console.error(err));
-
-        //}
-
-
 
     }
 
@@ -204,7 +173,7 @@ function renderYouTubeModal(data){
             var videoURL = value.id.videoId;
             var videoTitle = value.snippet.title;
             var videoThumbnail = value.snippet.thumbnails.medium.url;
-            $('#youtube-info').append('<li class="card"><a href="https://www.youtube.com/watch?v=' + videoURL + '" target="_blank"><div><img src="' + videoThumbnail + '"></div><article class="card-text"><small>' + channel + '</small><h3 class="video-title">' + videoTitle + '</h3></article></a></li>');
+            $('#youtube-info').append('<li class="card"><a href="https://www.youtube.com/watch?v=' + videoURL + '" target="_blank"><div><img src="' + videoThumbnail + '"></div><article class="card-text"><small>' + channel + '</small><p class="video-title">' + videoTitle + '</p></article></a></li>');
         });
     
     
