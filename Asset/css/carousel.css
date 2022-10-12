@@ -115,11 +115,7 @@
     align-items: center;
     margin-right: auto;
   }
-  
-  .carousel__slide:nth-child(even) {
-    /* background-image: url(../images/backgroundimage.jpg); */
-    /* background-color: #99f; */
-  }
+
   
   .carousel__slide:before {
     /* content: counter(item); */
