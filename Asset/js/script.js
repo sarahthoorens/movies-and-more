@@ -19,7 +19,6 @@ $('#movie-result-container').on("click",".movieBox",(e)=>{
     e.preventDefault();   
     var selectedMovieBox_elm=$(e.target).parent(); //create .movieBox element
     var id = selectedMovieBox_elm[0].id;
-    console.log("click, searchvalue:"+searchValue,id);
     getMovieIDApi(id);
     getGiphyApi(searchValue);
     getYouTubApi(searchValue);
