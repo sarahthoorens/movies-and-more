@@ -48,7 +48,7 @@ function getMovieApi(movieInput) {
 		}
 	};
 	
-	fetch(`https://online-movie-database.p.rapidapi.com/title/find?q=${movieInput.value}`, options)
+	fetch(`https://online-movie-database.p.rapidapi.com/title/get-overview-details?tconst="${movieInput.value}"&currentCountry=US`, options)
 	.then(response => response.json())
 	 .then(function (data) {
             console.log(data);
