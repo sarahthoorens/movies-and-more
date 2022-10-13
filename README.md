@@ -8,7 +8,14 @@ collaborative front-end project
 
 
 
-## First Project for Bootcamp
+## Acceptance Criteria
+- If you search a movie by title, you would get at most 6 results form movie API.
+- You are presented with poster images of movie that you search.
+- You hover over the images, you can see the movie title and click to get more information in Modal.
+- If you click one of the poster images, Modal pops up.
+- Modal include Movie detail information including runtime, release year, plot
+
+ 
 
 
 
@@ -54,6 +61,7 @@ https://github.com/sarahthoorens/movie-mood
   4. Foundation CSS
   5. Git bash for windows
   6. Chrome Web Broswer & Dev Tools
+  7. API
 
 
 
@@ -61,11 +69,18 @@ https://github.com/sarahthoorens/movie-mood
 
 #### Additional Sources:
   1. Carosel for gifs - https://css-tricks.com/css-only-carousel/
+  2. Movie API - Online Movie Database : https://rapidapi.com/apidojo/api/online-movie-database
+  3. YouTube API - https://developers.google.com/youtube/v3
+  4. Giphy API - https://developers.giphy.com/
+
   
 #### Contributions/co-coders
-  1. 
-  2. https://gith
+  1. https://github.com/sarahthoorens
+  2. https://github.com/rogseo
   3. https://github.com/Krimeas
+  4. https://github.com/kmaddox2122
+
+#### Deployed page: 
  
 Task details supplied by UT Austin Coding Bootcamp.
 

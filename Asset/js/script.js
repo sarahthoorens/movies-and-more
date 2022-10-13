@@ -27,8 +27,8 @@ $('#movie-result-container').on("click",".historyBox",(e)=>{
     //$('.movieBox').on("click",(e)=>{
         e.preventDefault();   
         var selectedMovieBox_elm=$(e.target).parent(); //create .movieBox element
-        var title = selectedMovieBox_elm[0].id;
-        getMovieApi(title); 
+        searchValue = selectedMovieBox_elm[0].id;
+        getMovieApi(searchValue); 
        
     })
 
