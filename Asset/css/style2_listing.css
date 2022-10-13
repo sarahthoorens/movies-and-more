@@ -269,14 +269,14 @@ ol, li {
 }
 
 /* lowered position of nav buttons */
-.carousel__navigation {
+/* .carousel__navigation {
   position: absolute;
   right: 0;
   bottom: 0;
   left: 0;
   text-align: center;
-  top: 23rem;
-}
+  top: 23rem; 
+ } */
 
 .carousel__navigation-list,
 .carousel__navigation-item {
