@@ -97,6 +97,7 @@
     counter-reset: item;
     scroll-behavior: smooth;
     scroll-snap-type: x mandatory;
+    min-height: 15rem;
   }
   
   .carousel__slide {
@@ -159,12 +160,13 @@
     animation-name: none;
   }
   
-  /* lowered position of nav buttons */
+  /* raised position of nav buttons */
   .carousel__navigation {
     position: absolute;
     right: 0;
-    /* bottom: 0; */
+    bottom: 0;
     left: 0;
+    top: 15rem;
     text-align: center;
   }
   
