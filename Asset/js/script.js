@@ -305,7 +305,7 @@ function renderMovieModal(data){
   
 
 
-    $("#movie-info").append('<h3><strong>'+title+'</stgirong></h3><div class="media-object stacked-for-large"><div class="media-object-section"><div class="thumbnail"><img src='+imgSrc+'></div></div><div class="media-object-section main-section"><p>'+year+" - "+ runTime +"min - "+ rating+"/10</p><p>"+plot+'</p></div>')
+    $("#movie-info").append('<h3><strong>'+title+'</strong></h3><div class="media-object stacked-for-large"><div class="media-object-section"><div class="thumbnail"><img src='+imgSrc+'></div></div><div class="media-object-section main-section"><p>'+year+" - "+ runTime +"min - "+ rating+"/10</p><p>"+plot+'</p></div>')
 
 
 
