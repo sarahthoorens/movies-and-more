@@ -105,19 +105,30 @@ function getGiphyApi(searchValue) {
 
 function renderGiphy(params) { ///Carousel will be added
 
-    $("#giphy-info").empty();//init
-    $("#giphy-info").append('<h3><strong>GIPHY<strong></h3>');
+//     $("#giphy-info").empty();//init
+//     $("#giphy-info").append('<h3><strong>GIPHY<strong></h3>');
    
-   var div=$("<div>").addClass("grid-x grid-padding-x medium-up-4 large-up-6");
+//    var div=$("<div>").addClass("grid-x grid-padding-x medium-up-4 large-up-6");
 
-    $.each(params.data, function (i, value) {
-        console.log(value);
-        var gif = value.images.fixed_height.url;
-        var gifURL = value.url;
-        var gifTitle = value.title;
-        div.append('<li class="card cell"><a href='+ gifURL + '" target="_blank"><div><img src="' + gif + '"></div></a></li>');
-    });
-    $("#giphy-info").append(div);
+//     $.each(params.data, function (i, value) {
+//         console.log(value);
+//         var gif = value.images.fixed_height.url;
+//         var gifURL = value.url;
+//         var gifTitle = value.title;
+//         div.append('<li class="card cell"><a href='+ gifURL + '" target="_blank"><div><img src="' + gif + '"></div></a></li>');
+//     });
+//     $("#giphy-info").append(div);
+
+        $.each(params.data, function (i, value) {
+                    console.log(value);
+                    var carouselID="#image"+i.toString();
+                    console.log(carouselID);            
+                    var gif = value.images.fixed_height.url;
+                    var gifURL = value.url;
+                    var gifTitle = value.title;
+                    $(carouselID).attr("src",gif);
+                    // div.append('<li class="card cell"><a href='+ gifURL + '" target="_blank"><div><img src="' + gif + '"></div></a></li>');
+                });
     
 
 
