@@ -79,7 +79,7 @@ img {
 
 
 /* appending data with JS */
-.movieBox{
+.historyBox, .movieBox{
   position:relative;
   max-width: 400px;
   max-height: 600px;
@@ -90,7 +90,7 @@ img {
 }
 
 /* Javascript push */
-.movieBox h3{
+.historyBox h3,.movieBox h3{
   transition: .5s ease;
   opacity: 0;
   position: absolute;
@@ -104,11 +104,15 @@ img {
   max-height: 500px;
   max-width: 350px;
 }
-.movieBox:hover img{
+.error{
+  color:beige;
+  text-align: center;
+}
+.historyBox:hover img, .movieBox:hover img{
   opacity: 0.8;
   background-color: black;
 }
-.movieBox:hover h3{
+.historyBox:hover h3, .movieBox:hover h3{
   opacity: 1;
 }
 .media-object-section li{
