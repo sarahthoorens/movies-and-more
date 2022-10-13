@@ -3,6 +3,10 @@ const url = ''
 const form = document.querySelector('form');
 let movieInput = document.querySelector('.input-field');
 
+<<<<<<< HEAD
+
+=======
+>>>>>>> frontpage
 
   
 form.onsubmit = function (e) {
