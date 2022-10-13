@@ -13,6 +13,7 @@ form.onsubmit = function (e) {
 	console.log(movieInput.value);
 	init();
 	getMovieApi(movieInput);
+}
 	
 	// var moveUrlByID="https://online-movie-database.p.rapidapi.com/title/get-overview-details?tconst="+id+"&currentCountry=US";
     
@@ -34,7 +35,7 @@ form.onsubmit = function (e) {
     //     .catch(err => console.error(err));
 
 	
-}
+
 
 // save the user search input to an array and set in local storage 
 let searchHistory = []
