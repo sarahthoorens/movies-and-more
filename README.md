@@ -1,10 +1,15 @@
+# Project 1 for bootcamp
+Collaborative front-end project to build a web application that helps with a need in the world.
+
+
+
 # Mood Movie
-collaborative front-end project
+Created movie information search page.  Used to search for movie information and fun things related to them and bring them all together on one page.  Gifs realted to the movie/theme, youtube videos that could give reviews or larger clips than gifs, and the informaiton related tot he movie such as title, description, etc. 
 
 
 
-
-# Movie Info Search
+## Mood Movie Description
+When the page loads you will be presented with a header letting you know the title of the page.  A search box will be center page with a recent search list nested below it.  When you click on the search and type in a movie or series such as 'Avengers' you will be taken to a new page with up to six titles.  Each of the six will give the movies name when scrolling over the image of their movie poster.  When you click on the movie poster/image a modal will pop out with several links and information.  
 
 
 
@@ -19,12 +24,8 @@ collaborative front-end project
 - Your search value is saved in local storage, it will show you the recent top 6 search history in landing page.git 
 - You can select your search history and get the search results.
 
- 
+ You will see the movie poster again on the left along with general information on the movie, below that you will see a gif carosel that lists up to five gifs related to the movie/series/franchise that you can scroll through.  To the right (or below depending on screen size) you will see up to three youtube links for top youtube videos related to the searched movie.  Clicking on the youtube link will take you to the youtube video in question.  
 
-
-
-## Password Generator
-Password generator generats password within 8-128 characters in length or throws errors. When you click the generate password button a series of prompts will as you to answer ok/cancel to 
 
 
 https://github.com/sarahthoorens/movie-mood
@@ -48,25 +49,23 @@ https://github.com/sarahthoorens/movie-mood
 ------------------------------------------------------------
 
 ### Task assigned:
-  1. 
-
-
-  1. Button press must set off prompts & alerts.
-  2. Prompts must pull & store data for later use in function to generate password.
-  3. Prompts/confirms - ask if numbers, letters upper & Lower, symbols, input character count 8-128.
-  4. Denial of all character types returns failure message.
-  5. After all prompts - make password display in central box.  
+  1. Decide on a subject that solves a real world problem.
+  2. Conceive a design and layout
+  3. Find at least two API's to pull information from.
+  4. Find a CSS Framework outside of Bootstrap to use.
+  5. Generate Complete HTML, CSS, JavaScript for web application
+  6. Work through Github for agile development.
+  7. deploy client-side web application using github Pages.
 
 
 ### Technologies used in this project were:
   1. HTML
   2. CSS
   3. VSCode
-  4. Foundation CSS
-  5. Git bash for windows
-  6. Chrome Web Broswer & Dev Tools
-  7. API
-
+  4. Google Slides
+  5. Foundation CSS
+  6. Git bash for windows
+  7. Chrome Web Browser & Dev Tools
 
 
 ------------------------------------------------------------
@@ -77,7 +76,10 @@ https://github.com/sarahthoorens/movie-mood
   3. YouTube API - https://developers.google.com/youtube/v3
   4. Giphy API - https://developers.giphy.com/
 
+  2. UTA Bootcamp previous homeworks/lecture materials.
+
   
+
 #### Contributions/co-coders
   1. https://github.com/sarahthoorens
   2. https://github.com/rogseo
