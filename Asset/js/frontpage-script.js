@@ -3,7 +3,10 @@ const url = ''
 const form = document.querySelector('form');
 let movieInput = document.querySelector('.input-field');
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> frontpage
 
   
 form.onsubmit = function (e) {
@@ -83,6 +86,7 @@ function init() {
 	let {movieData, results } = searchHistory;
   // render movie posters of stored movies to the DOM
 	 // Clear movie snippets
+	 
 	 moviePoster.innerHTML = "";
 	 
 	 let lastSearch = searchHistory[searchHistory.length - 1]
