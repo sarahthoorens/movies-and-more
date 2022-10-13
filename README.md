@@ -9,11 +9,15 @@ collaborative front-end project
 
 
 ## Acceptance Criteria
-- If you search a movie by title, you would get at most 6 results form movie API.
+- If you search a movie by title, you would get at most 6 results from movie API.
 - You are presented with poster images of movie that you search.
 - You hover over the images, you can see the movie title and click to get more information in Modal.
 - If you click one of the poster images, Modal pops up.
-- Modal include Movie detail information including runtime, release year, plot
+- Modal include Movie detail information(runtime, release year, plot, poster image, title and rating), 3 Youtube thumbnails and giphy gifs.
+- YouTue thumbnails are clickable and link to Youtube channel in a new tab.
+- Giphy gifs is displayed in carousel.
+- Your search value is saved in local storage, it will show you the recent top 6 search history in landing page.git 
+- You can select your search history and get the search results.
 
  
 
