@@ -1,19 +1,3 @@
-// var imageUrl = 
-// "https://www.geeksforgeeks.org/wp-content/uploads/jquery-banner-768x256.png";
-//   $(".carousel__slide").css("background-image", "url(" + imageUrl + ")");
-//   console.log("carousel slide");
-//   check('carousel__slide');
-
-
-//   function check(x) {
-//     elements = document.getElementsByClassName(x);
-//     for (var i = 0; i < elements.length; i++) {
-//         elements[i].style.backgroundImage= "url('https://giphy.com/gifs/excited-birthday-yeah-yoJC2GnSClbPOkV0eA')";
-//     // console.log("for loop");
-//     }
-//     // console.log("check function");
-// }
-
 // REQUESTING API
 
 var requestUrl = 'https://api.giphy.com/v1/gifs/trending?limit=5&api_key=wvV8XbpunUwtfHCUuAUptsJJmdb4yn01';

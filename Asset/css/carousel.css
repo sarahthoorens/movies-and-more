@@ -118,7 +118,6 @@
 
   
   .carousel__slide:before {
-    /* content: counter(item); */
     position: absolute;
     top: 50%;
     left: 50%;
@@ -160,10 +159,11 @@
     animation-name: none;
   }
   
+  /* lowered position of nav buttons */
   .carousel__navigation {
     position: absolute;
     right: 0;
-    bottom: 0;
+    /* bottom: 0; */
     left: 0;
     text-align: center;
   }
@@ -173,11 +173,12 @@
     display: inline-block;
   }
   
+  /* changed size and color of nav buttons */
   .carousel__navigation-button {
     display: inline-block;
-    width: 1.5rem;
-    height: 1.5rem;
-    background-color: #333;
+    width: 2.5rem;
+    height: 2.5rem;
+    background-color: #86242A;
     background-clip: content-box;
     border: 0.25rem solid transparent;
     border-radius: 50%;
@@ -185,6 +186,7 @@
     transition: transform 0.1s;
   }
   
+  /* removed side nav buttons by making width and height '0' */
   .carousel::before,
   .carousel::after,
   .carousel__prev,
@@ -192,8 +194,8 @@
     position: absolute;
     top: 0;
     margin-top: 37.5%;
-    width: 4rem;
-    height: 4rem;
+    width: 0rem;
+    height: 0rem;
     transform: translateY(-50%);
     border-radius: 50%;
     font-size: 0;
