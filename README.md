@@ -11,6 +11,8 @@ Created movie information search page.  Used to search for movie information and
 ## Mood Movie Description
 When the page loads you will be presented with a header letting you know the title of the page.  A search box will be center page with a recent search list nested below it.  When you click on the search and type in a movie or series such as 'Avengers' you will be taken to a new page with up to six titles.  Each of the six will give the movies name when scrolling over the image of their movie poster.  When you click on the movie poster/image a modal will pop out with several links and information.  
 
+You will see the movie poster again on the left along with general information on the movie, below that you will see a gif carosel that lists up to five gifs related to the movie/series/franchise that you can scroll through.  To the right (or below depending on screen size) you will see up to three youtube links for top youtube videos related to the searched movie.  Clicking on the youtube link will take you to the youtube video in question. 
+
 
 
 ## Acceptance Criteria
@@ -24,7 +26,7 @@ When the page loads you will be presented with a header letting you know the tit
 - Your search value is saved in local storage, it will show you the recent top 6 search history in landing page.git 
 - You can select your search history and get the search results.
 
- You will see the movie poster again on the left along with general information on the movie, below that you will see a gif carosel that lists up to five gifs related to the movie/series/franchise that you can scroll through.  To the right (or below depending on screen size) you will see up to three youtube links for top youtube videos related to the searched movie.  Clicking on the youtube link will take you to the youtube video in question.  
+ 
 
 
 
@@ -75,8 +77,8 @@ https://github.com/sarahthoorens/movie-mood
   2. Movie API - Online Movie Database : https://rapidapi.com/apidojo/api/online-movie-database
   3. YouTube API - https://developers.google.com/youtube/v3
   4. Giphy API - https://developers.giphy.com/
+  5. UTA Bootcamp previous homeworks/lecture materials.
 
-  2. UTA Bootcamp previous homeworks/lecture materials.
 
   
 
