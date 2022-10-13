@@ -39,7 +39,6 @@ function getMovieApi(movieInput) {
             searchHistory.push(history);
 			localStorage.setItem('searchHistory', JSON.stringify(searchHistory))
 
-			.catch(err => console.error(err));
         })
     }    
 // retreive previously searched titles from local storage
