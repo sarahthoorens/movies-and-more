@@ -16,10 +16,16 @@ form.onsubmit = function (e) {
 	e.preventDefault();
 	console.log('i was clicked');
 	console.log(movieInput.value);
-	// getMovieApi(movieInput);
+	getMovieApi(movieInput);
+	
+	fetch('https://online-movie-database.p.rapidapi.com/title/get-overview-details?tconst=tt0944947', options)
+		.then(response => response.json())
+		.then(response => console.log(response))
+		.catch(err => console.error(err));
+	window.location.href=('./index2_listing.html')
 }
 
-
+// 
 let searchHistory = []
 function getMovieApi(movieInput) {
 	fetch(`https://online-movie-database.p.rapidapi.com/title/find?q=${movieInput.value}`, options)
@@ -30,23 +36,11 @@ function getMovieApi(movieInput) {
                 title : movieInput.value,
                 movieData : data
             }
-
             searchHistory.push(history);
 			localStorage.setItem('searchHistory', JSON.stringify(searchHistory))
-            renderSearchHistory(searchHistory)
-			
 
-		.catch(err => console.error(err));
         })
     }    
-
-
-// set local storage with newly searched titles
-
-// function setMovieSearchHistory (searchHistory) {
-	
-// }
-
 // retreive previously searched titles from local storage
 
 let moviePoster = document.querySelector('.searchHistoryContainer')
@@ -66,16 +60,17 @@ function init() {
   // render movie posters of stored movies to the DOM
 	 // Clear movie snippets
 	 moviePoster.innerHTML = "";
-
-	 for (var i = 0; i < searchHistory.length; i++) {  
+	 let lastSearch = searchHistory[searchHistory.length - 1]
+	 for (var i = 0; i < 3; i++) {  
+		
 	 const searchHistoryContent = `
 	  <div class="moviePoster-1 cell-small-4">
 		  <div class = "card">
 			  <div class = "card-section">
 				  <div class="centered-text">
-					  <h4>${searchHistory[i].movieData.results[i].title}</h4>
+					  <h4>${lastSearch.movieData.results[0].title}</h4>
 				  </div>	
-			  <a href="<!--link to modal-->"><img src="${searchHistory[i].movieData.results[i].image.url}" alt="${searchHistory[i].movieData.results.title} poster style="width:100%""></a>
+			  <a href="<!--link to modal-->"><img src="${lastSearch.movieData.results[0].image.url}" alt="${lastSearch.movieData.results[0].title} poster style="width:100%""></a>
 		  </div>
 			  </div>
 	  </div>
@@ -83,9 +78,9 @@ function init() {
 		  <div class = "card">
 			  <div class = "card-section">
 				  <div class="centered-text">
-					  <h4>${searchHistory[i].movieData.results[i].title}</h4>
+					  <h4>${lastSearch.movieData.results[1].title}</h4>
 				  </div>	
-			  <a href="<!--link to modal-->"><img src="${searchHistory[i].movieData.results[i].image.url}" alt="${searchHistory[i].movieData.results[i].title} poster style="width:100%""></a>
+			  <a href="<!--link to modal-->"><img src="${lastSearch.movieData.results[1].image.url}" alt="${lastSearch.movieData.results[1].title} poster style="width:100%""></a>
 		  </div>
 			  </div>
 	  </div>
@@ -93,9 +88,9 @@ function init() {
 		  <div class = "card">
 			  <div class = "card-section">
 				  <div class="centered-text">
-					  <h4>${searchHistory[i].movieData.title}</h4>
+					  <h4>${lastSearch.movieData.results[2].title}</h4>
 				  </div>
-			  <a href="<!--link to modal-->"><img src="${searchHistory[i].movieData.results[i].image.url}" alt="${searchHistory[i].movieData.title} poster style="width:100%""></a>
+			  <a href="<!--link to modal-->"><img src="${lastSearch.movieData.results[2].image.url}" alt="${lastSearch.movieData.results[2].title} poster style="width:100%""></a>
 		  </div>
 			  </div>
 	  </div>
