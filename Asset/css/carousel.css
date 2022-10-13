@@ -163,9 +163,10 @@
   .carousel__navigation {
     position: absolute;
     right: 0;
-    /* bottom: 0; */
+    bottom: 0;
     left: 0;
     text-align: center;
+    top: 15rem;
   }
   
   .carousel__navigation-list,
