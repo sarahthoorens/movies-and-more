@@ -1,15 +1,11 @@
-//  $(document).foundation();  // to be existed?
+
 var searchValue="";
 $("#search").on("click", (e) => {
     e.preventDefault();
     searchValue = $("#searchInput").val();
     
-    //getGiphyApi(searchValue);
     getMovieApi(searchValue); 
-    //getYouTubApi(searchValue);
     
-
-
 });
 
 
@@ -21,10 +17,21 @@ $('#movie-result-container').on("click",".movieBox",(e)=>{
     var selectedMovieBox_elm=$(e.target).parent(); //create .movieBox element
     var id = selectedMovieBox_elm[0].id;
     getMovieIDApi(id);
+    console.log(searchValue);
     getGiphyApi(searchValue);
-    getYouTubApi(searchValue);
+    getYouTubeApi(searchValue);
+    
    
 })
+//When click history box
+$('#movie-result-container').on("click",".historyBox",(e)=>{
+    //$('.movieBox').on("click",(e)=>{
+        e.preventDefault();   
+        var selectedMovieBox_elm=$(e.target).parent(); //create .movieBox element
+        searchValue = selectedMovieBox_elm[0].id;
+        getMovieApi(searchValue); 
+       
+    })
 
 function getMovieIDApi(id){
     var moveUrlByID="https://online-movie-database.p.rapidapi.com/title/get-overview-details?tconst="+id+"&currentCountry=US";
@@ -40,9 +47,10 @@ function getMovieIDApi(id){
     fetch(moveUrlByID, options)
         .then(response => response.json())
         .then((data) => {
-            console.log(data);
+            console.log(data.title.title);
+                    
             renderMovieModal(data);
-            //storeMovieIDResult(data);
+                    
         })
         .catch(err => console.error(err));
 
@@ -98,19 +106,30 @@ function getGiphyApi(searchValue) {
 
 function renderGiphy(params) { ///Carousel will be added
 
-    $("#giphy-info").empty();//init
-    $("#giphy-info").append('<h3><strong>GIPHY<strong></h3>');
+//     $("#giphy-info").empty();//init
+//     $("#giphy-info").append('<h3><strong>GIPHY<strong></h3>');
    
-   var div=$("<div>").addClass("grid-x grid-padding-x medium-up-4 large-up-6");
+//    var div=$("<div>").addClass("grid-x grid-padding-x medium-up-4 large-up-6");
 
-    $.each(params.data, function (i, value) {
-        console.log(value);
-        var gif = value.images.fixed_height.url;
-        var gifURL = value.url;
-        var gifTitle = value.title;
-        div.append('<li class="card cell"><a href='+ gifURL + '" target="_blank"><div><img src="' + gif + '"></div></a></li>');
-    });
-    $("#giphy-info").append(div);
+//     $.each(params.data, function (i, value) {
+//         console.log(value);
+//         var gif = value.images.fixed_height.url;
+//         var gifURL = value.url;
+//         var gifTitle = value.title;
+//         div.append('<li class="card cell"><a href='+ gifURL + '" target="_blank"><div><img src="' + gif + '"></div></a></li>');
+//     });
+//     $("#giphy-info").append(div);
+
+        $.each(params.data, function (i, value) {
+                    console.log(value);
+                    var carouselID="#image"+i.toString();
+                    console.log(carouselID);            
+                    var gif = value.images.fixed_height.url;
+                    var gifURL = value.url;
+                    var gifTitle = value.title;
+                    $(carouselID).attr("src",gif);
+                    // div.append('<li class="card cell"><a href='+ gifURL + '" target="_blank"><div><img src="' + gif + '"></div></a></li>');
+                });
     
 
 
@@ -126,9 +145,48 @@ function init(){
     var storedHistory=JSON.parse(localStorage.getItem("searchHistory"));
     if(storedHistory !== null){
         searchHistory=storedHistory;
+        /// display search history
+        renderHistory(searchHistory);
+        console.log("init");
     }
+    
 }
 init();
+
+function renderHistory(data){
+    var cnt=0;
+    console.log(data.length-1);
+    for(let i=(data.length-1);i>=0;i--){  //get recent history first
+        //max 6 history
+        if(cnt<7){
+            var title=data[i].movieData.results[0].title;  //title from API
+            var searchValue=data[i].title;   //saved search value in local storage
+            var id = data[i].movieData.results[0].id.slice(7,16);
+            if(data[i].movieData.results[0].hasOwnProperty('image')){
+                var imgSrc=data[i].movieData.results[0].image.url;
+            }
+            else{
+                console.log("don't have url");
+                break;
+            }
+            
+            var div = $("<div>").addClass("cell small-6 large-4 auto button historyBox").attr("id" ,searchValue);
+            var img = $("<img>").attr({"src": imgSrc,"alt":title});
+            div.append(img);
+    
+            var h3=$("<h3>").text(title);
+            div.append(h3);
+           
+            $("#movie-result-container").append(div);
+            cnt++;
+            
+        }
+        else{
+            break;
+        }
+
+    }
+}
 
 function getMovieApi(searchValue) {
 
@@ -155,15 +213,25 @@ function getMovieApi(searchValue) {
         .then(response => response.json())
         .then((data) => {
             console.log(data);
+            // if there is result
+            if(data.hasOwnProperty("results")){
+                
+                var history={
+                    title : searchValue,
+                    movieData : data
+                }
+                
+                searchHistory.push(history);
+                storeMovieTitleHistory();
+                renderMovie(data); 
 
-            var history={
-                title : searchValue,
-                movieData : data
             }
-            
-            searchHistory.push(history);
-            storeMovieTitleHistory();
-            renderMovie(data);          
+            else{
+                console.log("no result!");
+                renderMovie(data);
+            }
+
+                     
 
         })
         .catch(err => console.error(err));
@@ -177,30 +245,41 @@ function getMovieApi(searchValue) {
 // Renders movie to Page 2
 function renderMovie(data) {
 
-    for (let i = 0; i < data.results.length; i++) { 
-        var id = data.results[i].id.slice(7,16); // /title/tt1412608/  -> tt1412608 for use of searching the detail info.
-        var type = data.results[i].titleType;
-        var title= data.results[i].title;
-        // if(data.results[i].image.hasOwnProperty(url)){
-            var imgSrc=data.results[i].image.url;
-        // }
-        // else{
-        //     var imgSrc=""
-        // }
-        
+    $("#movie-result-container").empty(); //init
+    //if there is result
+    if(data.hasOwnProperty("results")){
+        for (let i = 0; i < data.results.length; i++) { 
+            var id = data.results[i].id.slice(7,16); // /title/tt1412608/  -> tt1412608 for use of searching the detail info.
+            var type = data.results[i].titleType;
+            var title= data.results[i].title;
+            //Some data doesn't have poster url
+            if(data.results[i].hasOwnProperty('image')){
+                var imgSrc=data.results[i].image.url;
+            }
+            else{
+                console.log("don't have url");
+                break;
+            }
+           
+            
+            var div = $("<div>").addClass("cell small-6 large-4 auto button movieBox").attr("data-open","movieModal").attr("id" ,id);
+            var img = $("<img>").attr({"src": imgSrc,"alt":title});
+            div.append(img);
+    
+            var h3=$("<h3>").text(title);
+            div.append(h3);
+           
+            $("#movie-result-container").append(div);
+        }
+    }
+    else{
+        var h2=$("<h2>").addClass("error").text("No results were found for your search");
 
-        //console.log(data.Poster);
-        var div = $("<div>").addClass("cell small-6 large-4 auto button movieBox").attr("data-open","movieModal").attr("id" ,id);
-        var img = $("<img>").attr({"src": imgSrc,"alt":title});
-        div.append(img);
-
-        var h3=$("<h3>").text(title);
-        div.append(h3);
-       
-        $("#movie-result-container").append(div);
-        
+        $("#movie-result-container").append(h2);
 
     }
+
+    
 
 }
 function renderMovieModal(data){
@@ -210,13 +289,23 @@ function renderMovieModal(data){
     var imgSrc=data.title.image.url;
     var year=data.title.year;
     var genre=data.genre; //object
-    var plot=data.plotSummary.text;
+    //Some movie doesn't have plotSummary object, 
+    if(data.hasOwnProperty("plotSummary")){
+        var plot=data.plotSummary.text;
+    }
+    else if(data.hasOwnProperty("plotOutline")){
+        var plot=data.plotOutline.text;
+    }
+    else{
+        var plot="";
+
+    }
     var rating=data.ratings.rating;
     var runTime=data.title.runningTimeInMinutes;
   
 
 
-    $("#movie-info").append('<h3><strong>'+title+'</strong></h3><div class="media-object stacked-for-large"><div class="media-object-section"><div class="thumbnail"><img src='+imgSrc+'></div></div><div class="media-object-section main-section"><p>'+year+" - "+ runTime +"min - "+ rating+"/10</p><p>"+plot+'</p></div>')
+    $("#movie-info").append('<h3><strong>'+title+'</stgirong></h3><div class="media-object stacked-for-large"><div class="media-object-section"><div class="thumbnail"><img src='+imgSrc+'></div></div><div class="media-object-section main-section"><p>'+year+" - "+ runTime +"min - "+ rating+"/10</p><p>"+plot+'</p></div>')
 
 
 
@@ -224,9 +313,10 @@ function renderMovieModal(data){
 
 }
 
-function getYouTubApi(searchValue){
+function getYouTubeApi(searchValue){
     var ApiKey = config.MY_YOUTUBE_API;
     var url = "https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=3&q=" + searchValue + "&key=" + ApiKey;
+    console.log(url);
     fetch(url)
         .then(response => response.json())
         .then((data) => {
