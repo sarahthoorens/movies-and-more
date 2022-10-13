@@ -146,7 +146,7 @@ function init(){
     if(storedHistory !== null){
         searchHistory=storedHistory;
         /// display search history
-        renderHistory(searchHistory);
+        //renderHistory(searchHistory);
         console.log("init");
     }
     
