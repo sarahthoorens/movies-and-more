@@ -13,6 +13,7 @@
     }
   }
   
+  
   @keyframes tostart {
     75% {
       left: 0;
@@ -168,6 +169,7 @@
     left: 0;
     top: 15rem;
     text-align: center;
+    top: 15rem;
   }
   
   .carousel__navigation-list,

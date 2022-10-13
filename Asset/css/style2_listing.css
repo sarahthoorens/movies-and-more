@@ -79,7 +79,7 @@ img {
 
 
 /* appending data with JS */
-.movieBox{
+.historyBox, .movieBox{
   position:relative;
   max-width: 400px;
   max-height: 600px;
@@ -90,7 +90,7 @@ img {
 }
 
 /* Javascript push */
-.movieBox h3{
+.historyBox h3,.movieBox h3{
   transition: .5s ease;
   opacity: 0;
   position: absolute;
@@ -104,11 +104,15 @@ img {
   max-height: 500px;
   max-width: 350px;
 }
-.movieBox:hover img{
+.error{
+  color:beige;
+  text-align: center;
+}
+.historyBox:hover img, .movieBox:hover img{
   opacity: 0.8;
   background-color: black;
 }
-.movieBox:hover h3{
+.historyBox:hover h3, .movieBox:hover h3{
   opacity: 1;
 }
 .media-object-section li{
@@ -119,27 +123,16 @@ img {
   padding-right: 5px;
   margin-right:5px;
 
+  
+}
+
+.thumbnail {
+  height: 400px;
+  width: 250px;
 }
 
 
-
-
-
-
-/* Smallest screen only attempts to keep image more rectangle instead of defaulting to a square.*/
-/* @media screen and (max-width: 39.9375em) {
-  .card {
-    margin-right: 20px;
-    margin-left: 10px;
-    min-height: 600px;
-    min-width: auto;
-    height: 80%;
-    }
-} */
-
-
-/* carousel addition */
-
+/* CSS Pulled from Linked  */
 @keyframes tonext {
   75% {
     left: 0;
@@ -168,7 +161,7 @@ img {
   99% {
     left: 0;
   }
-} 
+}
 
 @keyframes snap {
   96% {
@@ -184,42 +177,13 @@ img {
     scroll-snap-align: center;
   }
 }
-/* 
-body {
-  max-width: 37.5rem;
-  margin: 0 auto;
-  padding: 0 1.25rem;
-  font-family: 'Lato', sans-serif;
-}
 
-* {
-  box-sizing: border-box;
-  scrollbar-color: transparent transparent; 
-  scrollbar-width: 0px;
-}
-
-*::-webkit-scrollbar {
-  width: 0;
-}
-
-*::-webkit-scrollbar-track {
-  background: transparent;
-}
-
-*::-webkit-scrollbar-thumb {
-  background: transparent;
-  border: none;
-}
-
-* {
-  -ms-overflow-style: none;
-}
 
 ol, li {
   list-style: none;
   margin: 0;
   padding: 0;
-} */
+}
 
 .carousel {
   position: relative;
@@ -239,6 +203,9 @@ ol, li {
   counter-reset: item;
   scroll-behavior: smooth;
   scroll-snap-type: x mandatory;
+  /* This needs to chnge */
+  min-height: auto;
+  max-height: 15rem;
 }
 
 .carousel__slide {
@@ -305,9 +272,10 @@ ol, li {
 .carousel__navigation {
   position: absolute;
   right: 0;
-  /* bottom: 0; */
+  bottom: 0;
   left: 0;
   text-align: center;
+  top: 15rem;
 }
 
 .carousel__navigation-list,
