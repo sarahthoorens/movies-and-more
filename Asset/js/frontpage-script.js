@@ -3,32 +3,51 @@ const url = ''
 const form = document.querySelector('form');
 let movieInput = document.querySelector('.input-field');
 
-const options = {
-	method: 'GET',
-	headers: {
-		'X-RapidAPI-Key': '0d66aff19dmsh524092da5aa051fp10c216jsn8b26997c98ec',
-		'X-RapidAPI-Host': 'online-movie-database.p.rapidapi.com'
-	}
-};
 
 
   
 form.onsubmit = function (e) {
 	e.preventDefault();
 	console.log('i was clicked');
+	sessionStorage.setItem('searchValue', movieInput.value)
 	console.log(movieInput.value);
+	init();
 	getMovieApi(movieInput);
 	
-	fetch('https://online-movie-database.p.rapidapi.com/title/get-overview-details?tconst=tt0944947', options)
-		.then(response => response.json())
-		.then(response => console.log(response))
-		.catch(err => console.error(err));
-	window.location.href=('./index2_listing.html')
+	// var moveUrlByID="https://online-movie-database.p.rapidapi.com/title/get-overview-details?tconst="+id+"&currentCountry=US";
+    
+    // const options = {
+    //     method: 'GET',
+    //     headers: {
+    //         'X-RapidAPI-Key': config.MY_MOVIE_API,
+    //         'X-RapidAPI-Host': 'online-movie-database.p.rapidapi.com'
+    //     }
+    // };
+    
+    // fetch(moveUrlByID, options)
+    //     .then(response => response.json())
+    //     .then((data) => {
+    //         console.log(data);
+    //         renderMovieModal(data);
+    //         //storeMovieIDResult(data);
+    //     })
+    //     .catch(err => console.error(err));
+
+	
 }
 
-// 
+// save the user search input to an array and set in local storage 
 let searchHistory = []
 function getMovieApi(movieInput) {
+	
+	const options = {
+		method: 'GET',
+		headers: {
+			'X-RapidAPI-Key': '0d66aff19dmsh524092da5aa051fp10c216jsn8b26997c98ec',
+			'X-RapidAPI-Host': 'online-movie-database.p.rapidapi.com'
+		}
+	};
+	
 	fetch(`https://online-movie-database.p.rapidapi.com/title/find?q=${movieInput.value}`, options)
 	.then(response => response.json())
 	 .then(function (data) {
@@ -41,8 +60,8 @@ function getMovieApi(movieInput) {
 			localStorage.setItem('searchHistory', JSON.stringify(searchHistory))
 
         })
+		window.location.href=('./index2_listing.html')
     }    
-// retreive previously searched titles from local storage
 
 let moviePoster = document.querySelector('.searchHistoryContainer')
 let {movieData, results, image, title } = searchHistory
@@ -54,13 +73,16 @@ function init() {
 	// If movies were retrieved from localStorage, update the searchHistory array to it
 	if (storedMovies !== null) {
 	  searchHistory = storedMovies;
-	  console.log(searchHistory)
+	  console.log(searchHistory);
+	}
+	else {  getMovieApi(movieInput);
 	}
 
 	let {movieData, results } = searchHistory;
   // render movie posters of stored movies to the DOM
 	 // Clear movie snippets
 	 moviePoster.innerHTML = "";
+	 
 	 let lastSearch = searchHistory[searchHistory.length - 1]
 	 for (var i = 0; i < 3; i++) {  
 		
