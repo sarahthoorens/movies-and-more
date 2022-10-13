@@ -82,6 +82,7 @@ function init() {
 	let {movieData, results } = searchHistory;
   // render movie posters of stored movies to the DOM
 	 // Clear movie snippets
+	 
 	 moviePoster.innerHTML = "";
 	 
 	 let lastSearch = searchHistory[searchHistory.length - 1]
