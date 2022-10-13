@@ -22,6 +22,15 @@ $('#movie-result-container').on("click",".movieBox",(e)=>{
     
    
 })
+//When click history box
+$('#movie-result-container').on("click",".historyBox",(e)=>{
+    //$('.movieBox').on("click",(e)=>{
+        e.preventDefault();   
+        var selectedMovieBox_elm=$(e.target).parent(); //create .movieBox element
+        var title = selectedMovieBox_elm[0].id;
+        getMovieApi(title); 
+       
+    })
 
 function getMovieIDApi(id){
     var moveUrlByID="https://online-movie-database.p.rapidapi.com/title/get-overview-details?tconst="+id+"&currentCountry=US";
@@ -124,7 +133,7 @@ function init(){
     var storedHistory=JSON.parse(localStorage.getItem("searchHistory"));
     if(storedHistory !== null){
         searchHistory=storedHistory;
-        
+        /// display search history
         renderHistory(searchHistory);
         console.log("init");
     }
@@ -133,10 +142,13 @@ function init(){
 init();
 
 function renderHistory(data){
-    for(let i=0;i<data.length;i++){
+    var cnt=0;
+    console.log(data.length-1);
+    for(let i=(data.length-1);i>=0;i--){  //get recent history first
         //max 6 history
-        if(i<6){
-            var title=data[i].movieData.results[0].title;
+        if(cnt<7){
+            var title=data[i].movieData.results[0].title;  //title from API
+            var searchValue=data[i].title;   //saved search value in local storage
             var id = data[i].movieData.results[0].id.slice(7,16);
             if(data[i].movieData.results[0].hasOwnProperty('image')){
                 var imgSrc=data[i].movieData.results[0].image.url;
@@ -146,7 +158,7 @@ function renderHistory(data){
                 break;
             }
             
-            var div = $("<div>").addClass("cell small-6 large-4 auto button movieBox").attr("data-open","movieModal").attr("id" ,id);
+            var div = $("<div>").addClass("cell small-6 large-4 auto button historyBox").attr("id" ,searchValue);
             var img = $("<img>").attr({"src": imgSrc,"alt":title});
             div.append(img);
     
@@ -154,6 +166,7 @@ function renderHistory(data){
             div.append(h3);
            
             $("#movie-result-container").append(div);
+            cnt++;
             
         }
         else{
