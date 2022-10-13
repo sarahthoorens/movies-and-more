@@ -205,7 +205,7 @@ ol, li {
   scroll-snap-type: x mandatory;
   /* This needs to chnge */
   min-height: auto;
-  max-height: 15rem;
+  max-height: 23rem;
 }
 
 .carousel__slide {
@@ -269,14 +269,14 @@ ol, li {
 }
 
 /* lowered position of nav buttons */
-.carousel__navigation {
+/* .carousel__navigation {
   position: absolute;
   right: 0;
   bottom: 0;
   left: 0;
   text-align: center;
-  top: 15rem;
-}
+  top: 23rem; 
+ } */
 
 .carousel__navigation-list,
 .carousel__navigation-item {
@@ -286,8 +286,8 @@ ol, li {
 /* changed size and color of nav buttons */
 .carousel__navigation-button {
   display: inline-block;
-  width: 2.5rem;
-  height: 2.5rem;
+  width: 2rem;
+  height: 2rem;
   background-color: #86242A;
   background-clip: content-box;
   border: 0.25rem solid transparent;
