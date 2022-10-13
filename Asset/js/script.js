@@ -124,9 +124,44 @@ function init(){
     var storedHistory=JSON.parse(localStorage.getItem("searchHistory"));
     if(storedHistory !== null){
         searchHistory=storedHistory;
+        
+        renderHistory(searchHistory);
+        console.log("init");
     }
+    
 }
 init();
+
+function renderHistory(data){
+    for(let i=0;i<data.length;i++){
+        //max 6 history
+        if(i<6){
+            var title=data[i].movieData.results[0].title;
+            var id = data[i].movieData.results[0].id.slice(7,16);
+            if(data[i].movieData.results[0].hasOwnProperty('image')){
+                var imgSrc=data[i].movieData.results[0].image.url;
+            }
+            else{
+                console.log("don't have url");
+                break;
+            }
+            
+            var div = $("<div>").addClass("cell small-6 large-4 auto button movieBox").attr("data-open","movieModal").attr("id" ,id);
+            var img = $("<img>").attr({"src": imgSrc,"alt":title});
+            div.append(img);
+    
+            var h3=$("<h3>").text(title);
+            div.append(h3);
+           
+            $("#movie-result-container").append(div);
+            
+        }
+        else{
+            break;
+        }
+
+    }
+}
 
 function getMovieApi(searchValue) {
 
