@@ -13,6 +13,7 @@ $("#search").on("click", (e) => {
 });
 
 
+
 //index2_listing.html when you click one of list of movies
 $('#movie-result-container').on("click",".movieBox",(e)=>{
 //$('.movieBox').on("click",(e)=>{
