@@ -190,8 +190,6 @@ function renderMovie(data) {
         }
        
         
-
-        //console.log(data.Poster);
         var div = $("<div>").addClass("cell small-6 large-4 auto button movieBox").attr("data-open","movieModal").attr("id" ,id);
         var img = $("<img>").attr({"src": imgSrc,"alt":title});
         div.append(img);
