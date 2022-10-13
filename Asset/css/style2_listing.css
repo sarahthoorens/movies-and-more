@@ -104,6 +104,10 @@ img {
   max-height: 500px;
   max-width: 350px;
 }
+.error{
+  color:beige;
+  text-align: center;
+}
 .movieBox:hover img{
   opacity: 0.8;
   background-color: black;
