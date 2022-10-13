@@ -7,7 +7,11 @@ $("#search").on("click", (e) => {
     getMovieApi(searchValue); 
     
 });
-
+window.onload = function (e) {
+    searchValue = $("#searchInput").val();
+    
+    searchValue = sessionStorage.getItem('searchValue');
+     getMovieApi(searchValue)
 
 
 //index2_listing.html when you click one of list of movies
@@ -153,40 +157,40 @@ function init(){
 }
 init();
 
-function renderHistory(data){
-    var cnt=0;
-    console.log(data.length-1);
-    for(let i=(data.length-1);i>=0;i--){  //get recent history first
-        //max 6 history
-        if(cnt<7){
-            var title=data[i].movieData.results[0].title;  //title from API
-            var searchValue=data[i].title;   //saved search value in local storage
-            var id = data[i].movieData.results[0].id.slice(7,16);
-            if(data[i].movieData.results[0].hasOwnProperty('image')){
-                var imgSrc=data[i].movieData.results[0].image.url;
-            }
-            else{
-                console.log("don't have url");
-                break;
-            }
+// function renderHistory(data){
+//     var cnt=0;
+//     console.log(data.length-1);
+//     for(let i=(data.length-1);i>=0;i--){  //get recent history first
+//         //max 6 history
+//         if(cnt<7){
+//             var title=data[i].movieData.results[0].title;  //title from API
+//             var searchValue=data[i].title;   //saved search value in local storage
+//             var id = data[i].movieData.results[0].id.slice(7,16);
+//             if(data[i].movieData.results[0].hasOwnProperty('image')){
+//                 var imgSrc=data[i].movieData.results[0].image.url;
+//             }
+//             else{
+//                 console.log("don't have url");
+//                 break;
+//             }
             
-            var div = $("<div>").addClass("cell small-6 large-4 auto button historyBox").attr("id" ,searchValue);
-            var img = $("<img>").attr({"src": imgSrc,"alt":title});
-            div.append(img);
+//             var div = $("<div>").addClass("cell small-6 large-4 auto button historyBox").attr("id" ,searchValue);
+//             var img = $("<img>").attr({"src": imgSrc,"alt":title});
+//             div.append(img);
     
-            var h3=$("<h3>").text(title);
-            div.append(h3);
+//             var h3=$("<h3>").text(title);
+//             div.append(h3);
            
-            $("#movie-result-container").append(div);
-            cnt++;
+//             $("#movie-result-container").append(div);
+//             cnt++;
             
-        }
-        else{
-            break;
-        }
+//         }
+//         else{
+//             break;
+//         }
 
-    }
-}
+//     }
+// }
 
 function getMovieApi(searchValue) {
 
@@ -202,12 +206,12 @@ function getMovieApi(searchValue) {
    
      //if there is history, don't call API
      //check localstorage
-    if(searchHistory.some(e => e.title === searchValue)){
-        const i = searchHistory.findIndex(e => e.title === searchValue)
-        console.log("I didn't make api call");
-        renderMovie(searchHistory[i].movieData);
-    }
-    else{
+    // if(searchHistory.some(e => e.title === searchValue)){
+    //     const i = searchHistory.findIndex(e => e.title === searchValue)
+    //     console.log("I didn't make api call");
+    //     renderMovie(searchHistory[i].movieData);
+    // }
+    // else{
         console.log("Make new api call");
         fetch(moveUrlByTitle, options)
         .then(response => response.json())
@@ -234,7 +238,7 @@ function getMovieApi(searchValue) {
                      
 
         })
-        .catch(err => console.error(err));
+        // .catch(err => console.error(err));
     }
 
  }
@@ -253,13 +257,13 @@ function renderMovie(data) {
             var type = data.results[i].titleType;
             var title= data.results[i].title;
             //Some data doesn't have poster url
-            if(data.results[i].hasOwnProperty('image')){
+            // if(data.results[i].hasOwnProperty('image')){
                 var imgSrc=data.results[i].image.url;
-            }
-            else{
-                console.log("don't have url");
-                break;
-            }
+            // }
+            // else{
+            //     console.log("don't have url");
+            //     break;
+            // }
            
             
             var div = $("<div>").addClass("cell small-6 large-4 auto button movieBox").attr("data-open","movieModal").attr("id" ,id);
