@@ -1,5 +1,5 @@
 var config = {
-    MY_YOUTUBE_API: "AIzaSyAQOKHTETAoq0GtKMM4jrvTljYDqGbdsRY",
-    MY_MOVIE_API : 'e9d115ede6msh9a9b8592434a878p12c4dejsnde0b73ead6fc',
-    MY_GIPHY_API : "hf3SGj0CbnYvhzUwTN9wT4A4r5NeyuR5"
-  }
+  MY_YOUTUBE_API: "AIzaSyClJT_YIc2Vh0Aezue5FXzZ4X0K32N1SRo",
+  MY_MOVIE_API : "c0bd93f36amshfaeaae0b910c85bp18a115jsn3771b8f37325",
+  MY_GIPHY_API : "wvV8XbpunUwtfHCUuAUptsJJmdb4yn01",
+}
