@@ -64,7 +64,7 @@ https://github.com/sarahthoorens/movie-mood
   
 #### Contributions/co-coders
   1. 
-  2. 
+  2. https://gith
   3. https://github.com/Krimeas
  
 Task details supplied by UT Austin Coding Bootcamp.
