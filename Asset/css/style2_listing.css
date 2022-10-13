@@ -121,7 +121,10 @@ img {
 
 }
 
-
+.thumbnail {
+  height: 400px;
+  width: 250px;
+}
 
 
 
