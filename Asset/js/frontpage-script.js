@@ -9,7 +9,7 @@ form.onsubmit = function (e) {
 	console.log('i was clicked');
 	sessionStorage.setItem('searchValue', movieInput.value);
 	console.log(movieInput.value);
-	init();
+	// init();
 	getMovieApi(movieInput);
 }
 
@@ -29,12 +29,17 @@ function getMovieApi(movieInput) {
 		.then(response => response.json())
 		.then(function (data) {
 			console.log(data);
+		if(data.hasOwnProperty("results")){
 			var history = {
 				title: movieInput.value,
 				movieData: data
 			}
 			searchHistory.push(history);
 			localStorage.setItem('searchHistory', JSON.stringify(searchHistory));
+		} else {
+			console.log("no result!");
+		
+		}
 
 		})
 	// send user to relative html page with movie poster renderings
@@ -54,18 +59,18 @@ function init() {
 		console.log(searchHistory);
 	}
 	else {
-		getMovieApi(movieInput);
+		console.log('no search history found');
 	}
 
 	let { movieData, results } = searchHistory;
 
-	// Clear movie snippets
-
+	// Clear movie snippets before loading latest history
 	moviePoster.innerHTML = "";
 
-	let lastSearch = searchHistory[searchHistory.length - 1]
-	for (var i = 0; i < 3; i++) {
+	let lastSearch = searchHistory[searchHistory.length - 1];
 	// render movie posters of stored movies to the DOM
+	if(searchHistory) { 
+		for (var i = 0; i < 3; i++) {
 		const searchHistoryContent = `
 	  <div class="moviePoster-1 cell-small-4">
 		  <div class = "card">
@@ -97,8 +102,10 @@ function init() {
 		  </div>
 			  </div>
 	  </div>
-		  `
+		  `;
 		moviePoster.innerHTML = searchHistoryContent;
-	}
+	} 
 }
+
+	}
 init();
