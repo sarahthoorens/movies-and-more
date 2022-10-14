@@ -2,7 +2,7 @@
 
 Project Goal: Collaboratively build a front-end web application that helps with a need in the world.
 
-Deployed Link: https://github.com/sarahthoorens/movies-and-more </br>
+Deployed Link: https://sarahthoorens.github.io/movies-and-more/ </br>
 Deployed Date: 10/13/22
 
 ### Contributors
