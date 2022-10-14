@@ -1,5 +1,6 @@
 @include foundation-everything(true);
-@import url('https://fonts.googleapis.com/css2?family=Baloo+Da+2&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Baloo+Da+2&family=DM+Serif+Display&display=swap');
+
 
 * {
   padding: 0;
@@ -31,8 +32,9 @@ h1 {
 }
 
 h3 {
-  font-family: 'Limelight';
+  font-family: 'DM Serif Display', serif;
   font-weight: bold;
+  font-size: 40px;
   color: black
  
 }
@@ -89,6 +91,7 @@ ul .menu {
 }
 
 .hero .lead-text {
+  font-family: 'Proza Libre', sans-serif;
   background-color: white;
   padding: 30px;
   border-radius: 1rem;
@@ -146,9 +149,8 @@ form {
     margin: 10px 20px 10px 10px;
     min-height: 400px;
     min-width: 200px;
-    max-height: 400px;
+    max-height: 440px;
     max-width: 300px;
-    height: 80%;
 }
 
 
@@ -165,10 +167,6 @@ position: absolute;
 top: 50%;
 left: 50%;
 transform: translate(-50%, -50%);
-}
-
-footer {
-
 }
 
 img {
