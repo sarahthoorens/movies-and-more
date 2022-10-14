@@ -75,7 +75,7 @@ You and your group will use everything you’ve learned over the past six module
 ![modal page](./Asset/images/modal1.JPG)
 </br>
 <!-- Sixth Image -->
-![modal page w/ comment](./Asset/images/modal2.JPG)
+![modal page w/ comment](./Asset/images/modal2.jpg)
 
 
 ------------------------------------------------------------
