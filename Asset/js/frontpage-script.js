@@ -20,7 +20,7 @@ function getMovieApi(movieInput) {
 	const options = {
 		method: 'GET',
 		headers: {
-			'X-RapidAPI-Key': '0d66aff19dmsh524092da5aa051fp10c216jsn8b26997c98ec',
+			'X-RapidAPI-Key': config.myMovieApi,
 			'X-RapidAPI-Host': 'online-movie-database.p.rapidapi.com'
 		}
 	};
