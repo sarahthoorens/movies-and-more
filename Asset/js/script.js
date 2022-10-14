@@ -8,6 +8,7 @@ $("#search").on("click", (e) => {
     getMovieApi(searchValue); 
     
 });
+
 window.onload = function (e) {
     searchValue = $("#searchInput").val();
     
