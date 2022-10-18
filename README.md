@@ -70,7 +70,7 @@ You and your group will use everything you’ve learned over the past six module
 ------------------------------------------------------------
 #### Initial Wireframe
 
-![page 1 and 2](.Asset/images/wireframe-p1.png)
+![page 1 and 2](./Asset/images/wireframe-p1.png)
 </br>
 ![pop-up modal](./Asset/images/wireframe-p2.png)
 </br>
