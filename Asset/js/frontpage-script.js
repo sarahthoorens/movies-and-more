@@ -22,6 +22,7 @@ function getMovieApi(movieInput) {
         headers: {
             'X-RapidAPI-Key': config.MY_MOVIE_API,
             'X-RapidAPI-Host': 'online-movie-database.p.rapidapi.com'
+	}
         };
 
 	fetch(`https://online-movie-database.p.rapidapi.com/title/get-overview-details?tconst="${movieInput.value}"&currentCountry=US`, options)
