@@ -17,13 +17,12 @@ form.onsubmit = function (e) {
 let searchHistory = []
 function getMovieApi(movieInput) {
 
-	const options = {
-		method: 'GET',
-		headers: {
-			'X-RapidAPI-Key': config.myMovieApi,
-			'X-RapidAPI-Host': 'online-movie-database.p.rapidapi.com'
-		}
-	};
+	    const options = {
+        method: 'GET',
+        headers: {
+            'X-RapidAPI-Key': config.MY_MOVIE_API,
+            'X-RapidAPI-Host': 'online-movie-database.p.rapidapi.com'
+        };
 
 	fetch(`https://online-movie-database.p.rapidapi.com/title/get-overview-details?tconst="${movieInput.value}"&currentCountry=US`, options)
 		.then(response => response.json())
